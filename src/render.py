@@ -361,7 +361,7 @@ def render(dash, today=None, template=None):
     tokens.update(rubric_cells(ev_sel, rows_data))
     end = today + timedelta(days=WINDOW_DAYS)
     tokens.update({
-        "snapshot_line": '<p class="meta">Data Snapshot: <strong>%s %d, %d</strong>. Updated %s. Distributed every 6 hours (12:00 AM, 6:00 AM, 12:00 PM, and 6:00 PM ET). '
+        "snapshot_line": '<p class="meta">Data Snapshot: <strong>%s %d, %d</strong>. Updated %s. Data is refreshed every 6 hours (12:00 AM, 6:00 AM, 12:00 PM, and 6:00 PM ET). '
                          'Sections marked stale kept their last good data. Data can be refreshed upon request.</p>' % (
                              now.strftime("%B"), now.day, now.year, now.strftime("%I:%M %p ET").lstrip("0")),
         "glance_title": "Next 7 Days at a Glance (%s, %d)" % (fmt_range(today, end), end.year),
