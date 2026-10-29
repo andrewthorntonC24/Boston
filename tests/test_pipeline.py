@@ -214,3 +214,25 @@ def test_rejected_key_message_is_actionable(monkeypatch):
 def test_env_strips_pasted_whitespace(monkeypatch):
     monkeypatch.setenv("TICKETMASTER_API_KEY", "abc123 \n")
     assert config.env("TICKETMASTER_API_KEY") == "abc123"
+
+
+def test_airnow_forecast_parses_the_real_captured_payload():
+    fc = airnow.parse_forecast(fw.AIRNOW_FORECAST_REAL)
+    assert [(f["date"], f["aqi"], f["category"]) for f in fc] == [
+        ("2026-10-29", 50, "Good"), ("2026-10-30", 50, "Good"), ("2026-10-31", 40, "Good")], "dateValid is the forecast day, not dateIssue"
+    assert fc[0]["agency"] == "Massachusetts Dept. of Environmental Protection"
+
+
+def test_airnow_forecast_keeps_worst_pollutant_and_category_only_rows():
+    rows = [{"dateValid": "2026-11-01", "aqi": 40, "categoryNumber": 1, "categoryName": "Good", "parameterName": "O3"},
+            {"dateValid": "2026-11-01", "aqi": 88, "categoryNumber": 2, "categoryName": "Moderate", "parameterName": "PM2.5"},
+            {"dateValid": "2026-11-02", "aqi": -1, "categoryNumber": 2, "categoryName": "Moderate", "parameterName": "PM2.5"}]
+    fc = airnow.parse_forecast(rows)
+    assert (fc[0]["aqi"], fc[0]["category"], fc[0]["pollutant"]) == (88, "Moderate", "PM2.5")
+    assert (fc[1]["aqi"], fc[1]["category"]) == (None, "Moderate")
+
+
+def test_air_section_shows_forecast_days_after_today_and_names_the_forecaster(world):
+    page = render.render(run_all(world), today=fw.TODAY)
+    # fake TODAY is Oct 21 but the captured forecast is Oct 29-31, all after today, so all three appear
+    assert "Forecast (Massachusetts Dept. of Environmental Protection)" in page and "Oct 31" in page

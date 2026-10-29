@@ -89,14 +89,19 @@ def render_weather(sec, today):
     return {"weather_cards": "\n".join(cards), "weather_meta": meta}
 
 
-def render_air(sec):
+def render_air(sec, today):
     d = data_of(sec)
     if not d:
         value, text = "Not available", "Air quality could not be refreshed. %s" % fresh(sec)
     else:
         value = "%s (%d)" % (d["category"], d["aqi"])
-        fc = d.get("forecast") or []
-        fc_txt = " Forecast: %s." % "; ".join("%s AQI %d (%s)" % (date.fromisoformat(f["date"]).strftime("%a %b ") + str(date.fromisoformat(f["date"]).day), f["aqi"], f["category"]) for f in fc[:3]) if fc else ""
+        fc = [f for f in (d.get("forecast") or []) if date.fromisoformat(f["date"]) > today]
+        def fc_one(f):
+            dd = date.fromisoformat(f["date"])
+            label = "%s %s %d" % (dd.strftime("%a"), dd.strftime("%b"), dd.day)
+            return "%s %s(%s)" % (label, ("AQI %d " % f["aqi"]) if f.get("aqi") is not None else "", f["category"])
+        agency = next((f["agency"] for f in fc if f.get("agency")), None)
+        fc_txt = (" Forecast%s: %s." % (" (%s)" % agency if agency else "", "; ".join(fc_one(f) for f in fc[:3]))) if fc else ""
         notes = " ".join(esc(n) for n in d.get("notes", []))
         text = "Source: %s, %s reporting area. Current AQI %d (%s), driven by %s. %s%s %s %s" % (
             esc(d["source"]), esc(d.get("area") or "nearest"), d["aqi"], esc(d["category"]), esc(d.get("pollutant") or "the highest pollutant"),
@@ -343,7 +348,7 @@ def render(dash, today=None, template=None):
     secs = dash["sections"]
     tokens = {}
     tokens.update(render_weather(secs["weather"], today))
-    tokens.update(render_air(secs["air"]))
+    tokens.update(render_air(secs["air"], today))
     ev_tokens = render_events(secs["events"], today)
     tokens.update(ev_tokens)
     pr_tokens, rows_data, pr = render_protests(today)

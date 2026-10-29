@@ -13,6 +13,14 @@ def d(n):
     return (TODAY + timedelta(days=n)).isoformat()
 
 
+# CAPTURED FROM THE LIVE SERVICE on 2026-10-29 (the only fixture here that is a real response, not written from docs).
+AIRNOW_FORECAST_REAL = [
+    {"dateIssue": "2026-10-28", "dateValid": "2026-10-29", "reportingArea": "Boston Metro", "reportingAreaCode": "ma001", "stateCode": "MA", "parameterName": "PM2.5", "aqi": 50, "forecastAgency": "Massachusetts Dept. of Environmental Protection", "categoryNumber": 1, "categoryName": "Good", "actionDay": False, "discussion": ""},
+    {"dateIssue": "2026-10-28", "dateValid": "2026-10-30", "reportingArea": "Boston Metro", "reportingAreaCode": "ma001", "stateCode": "MA", "parameterName": "PM2.5", "aqi": 50, "forecastAgency": "Massachusetts Dept. of Environmental Protection", "categoryNumber": 1, "categoryName": "Good", "actionDay": False, "discussion": ""},
+    {"dateIssue": "2026-10-28", "dateValid": "2026-10-31", "reportingArea": "Boston Metro", "reportingAreaCode": "ma001", "stateCode": "MA", "parameterName": "PM2.5", "aqi": 40, "forecastAgency": "Massachusetts Dept. of Environmental Protection", "categoryNumber": 1, "categoryName": "Good", "actionDay": False, "discussion": ""},
+]
+
+
 def nws_forecast():
     periods = []
     for i in range(7):
@@ -106,7 +114,7 @@ def route_json(url, params=None, headers=None, timeout=30):
     if "airnowapi.org" in url and "observation" in url:
         return airnow_obs()
     if "airnowapi.org" in url and "forecast" in url:
-        return [{"dateForecast": d(1), "aqi": 55, "parameterName": "PM2.5"}, {"dateForecast": d(2), "aqi": 40, "parameterName": "O3"}]
+        return AIRNOW_FORECAST_REAL
     if "api-v3.mbta.com" in url:
         return mbta()
     if "package_show" in url:

@@ -63,21 +63,35 @@ def parse_observations(payload):
 
 
 def parse_forecast(payload):
-    """Best-effort: group any rows that carry a date and an AQI by date. Returns [] if the shape is unknown."""
+    """Group forecast rows by the day they are VALID for (dateValid), taking the worst pollutant per day.
+    Shape confirmed against a real response on 2026-10-29: one row per pollutant per day with dateIssue (when it
+    was issued, NOT used), dateValid (the forecast day), aqi, categoryName, categoryNumber, forecastAgency.
+    Older/other spellings are accepted as fallbacks. A row with no AQI number (-1) keeps its category only."""
     if isinstance(payload, dict):
         payload = payload.get("data") or payload.get("forecasts") or []
     by_date = {}
     for r in payload if isinstance(payload, list) else []:
-        date = _pick(r, "dateForecast", "DateForecast", "forecastDate", "date")
-        aqi = _pick(r, "aqi", "AQI", "forecastAQI")
-        try:
-            aqi = int(aqi)
-        except (TypeError, ValueError):
+        date = _pick(r, "dateValid", "DateForecast", "dateForecast", "forecastDate")
+        if not date:
             continue
-        if date and aqi >= 0:
-            date = str(date)[:10]
-            by_date[date] = max(by_date.get(date, 0), aqi)
-    return [{"date": d, "aqi": a, "category": category(a)} for d, a in sorted(by_date.items())]
+        date = str(date)[:10]
+        try:
+            aqi = int(_pick(r, "aqi", "AQI"))
+        except (TypeError, ValueError):
+            aqi = -1
+        num = _pick(r, "categoryNumber", "CategoryNumber")
+        if aqi < 0 and not num:
+            continue
+        cur = by_date.get(date)
+        rank = aqi if aqi >= 0 else -1
+        if cur is None or rank > cur["rank"] or (rank == cur["rank"] and (num or 0) > (cur["num"] or 0)):
+            by_date[date] = {"rank": rank, "num": num, "aqi": aqi if aqi >= 0 else None,
+                             "name": _pick(r, "categoryName"), "agency": _pick(r, "forecastAgency"), "pollutant": _pick(r, "parameterName")}
+    out = []
+    for d, v in sorted(by_date.items()):
+        cat = category(v["aqi"]) if v["aqi"] is not None else (v["name"] or "Unknown")
+        out.append({"date": d, "aqi": v["aqi"], "category": cat, "agency": v["agency"], "pollutant": v["pollutant"]})
+    return out
 
 
 def fetch(lat, lon, key, distance=25):
