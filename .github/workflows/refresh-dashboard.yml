@@ -23,7 +23,7 @@ jobs:
     outputs:
       ran: ${{ steps.gate.outputs.run }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Gate (skip duplicate or too-early scheduled runs)
         id: gate
@@ -31,7 +31,7 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
           else echo "run=$(python3 tools/should_run.py data/dashboard.json)" >> "$GITHUB_OUTPUT"; fi
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         if: steps.gate.outputs.run == 'true'
         with:
           python-version: "3.12"
@@ -86,7 +86,7 @@ jobs:
             else gh issue create --label dashboard-refresh --title "Dashboard refresh: some sections need attention" --body-file data/run_summary.md; fi
           fi
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         if: steps.gate.outputs.run == 'true'
         with:
           path: dist
@@ -109,4 +109,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
