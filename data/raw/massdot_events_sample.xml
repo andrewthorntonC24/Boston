@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ERSEvents>
+    <UpdateDate>2026-10-29T14:06:21.799-0400</UpdateDate>
+    <Events>
+        <Event>
+            <EventId>2815129334872804</EventId>
+            <EventCreatedDate>2026-10-29T14:02:08</EventCreatedDate>
+            <EventStartDate></EventStartDate>
+            <EventEndDate></EventEndDate>
+            <LastUpdate>2026-10-29T14:02:08</LastUpdate>
+            <EventStatus>Open</EventStatus>
+            <EventCategory>Current Event</EventCategory>
+            <EventType>Traffic Incidents</EventType>
+            <EventSubType>Traffic (DMV/Crash)</EventSubType>
+            <RoadwayName>RT-128</RoadwayName>
+            <Direction>NB</Direction>
+            <LocationType>Point</LocationType>
+            <PrimaryLatitude>42.534209100125004</PrimaryLatitude>
+            <PrimaryLongitude>-70.95077522767</PrimaryLongitude>
+            <SecondaryLatitude></SecondaryLatitude>
+            <SecondaryLongitude></SecondaryLongitude>
+            <LocationDescription>RT-128 NB Exit Exit 39</LocationDescription>
+            <LaneBlockageDescription>Travel Lane(s) Affected: 1 of 3 Lane(s) Affected Description: Right 1 lane closed</LaneBlockageDescription>
+            <RecurrenceDescription></RecurrenceDescription>
+        </Event>
+        <Event>
+            <EventId>2815026255654303</EventId>
+            <EventCreatedDate>2026-10-29T12:19:59</EventCreatedDate>
+            <EventStartDate></EventStartDate>
+            <EventEndDate></EventEndDate>
+            <LastUpdate>2026-10-29T12:19:59</LastUpdate>
+            <EventStatus>Open</EventStatus>
+            <EventCategory>Current Event</EventCategory>
+            <EventType>Traffic Incidents</EventType>
+            <EventSubType>Traffic (DMV/Crash)</EventSubType>
+            <RoadwayName>RT-140</RoadwayName>
+            <Direction>NB</Direction>
+            <LocationType>Point</LocationType>
+            <PrimaryLatitude>42.039076581780314</PrimaryLatitude>
+            <PrimaryLongitude>-71.23773286725083</PrimaryLongitude>
+            <SecondaryLatitude></SecondaryLatitude>
+            <SecondaryLongitude></SecondaryLongitude>
+            <LocationDescription>RT-140 NB Exit 40</LocationDescription>
+            <LaneBlockageDescription>Travel Lane(s) Affected: 0 Lane(s) Affected Description: 0 lanes closed</LaneBlockageDescription>
+            <RecurrenceDescription></RecurrenceDescription>
+        </Event>
+        <Event>
+            <EventId>2814957536175781</EventId>
+            <EventCreatedDate>2026-10-29T09:59:03</EventCreatedDate>
+            <EventStartDate></EventStartDate>
+            <EventEndDate></EventEndDate>
+            <LastUpdate>2026-10-29T11:18:42</LastUpdate>
+            <EventStatus>Open</EventStatus>
+            <EventCategory>Current Event</EventCategory>
+            <EventType>Traffic Incidents</EventType>
+            <EventSubType>Traffic (DMV/Crash)</EventSubType>
+            <RoadwayName>RT-41</RoadwayName>
+            <Direction>NB and SB</Direction>
+            <LocationType>Point</LocationType>
+            <PrimaryLatitude>42.36233521859357</PrimaryLatitude>
+            <PrimaryLongitude>-73.38074608549614</PrimaryLongitude>
+            <SecondaryLatitude></SecondaryLatitude>
+            <SecondaryLongitude></SecondaryLongitude>
+            <LocationDescription>RT-41 NB and SB Exit At 2755 State Rd</LocationDescription>
+            <LaneBlockageDescription>Travel Lane(s) Affected: 2 of 2 (SELECT ONLY IF All Lanes are Closed) Lane(s) Affected Description: Road closed (both directions)</LaneBlockageDescription>
+            <RecurrenceDescription></RecurrenceDescription>
+        </Event>
+        <Event>
+            <EventId>2815026255650922</EventId>
+            <EventCreatedDate>2026-10-29T09:57:51</EventCreatedDate>
+            <EventStartDate>2026-10-31 at 09:00</EventStartDate>
+            <EventEndDate>2026-10-31 at 09:30</EventEndDate>
+            <LastUpdate>2026-10-29T09:57:51</LastUpdate>
+            <EventStatus>Open</EventStatus>
+            <EventCategory>Current Event</EventCategory>
+            <EventType>Traffic Incidents</EventType>
+            <EventSubType>Traffic (Planned / Scheduled Bridge Lift)</EventSubType>
+            <RoadwayName>Fore River Bridge (3A)</RoadwayName>
+            <Direction>NB and SB</Direction>
+            <LocationType>Point</LocationType>
+            <PrimaryLatitude>42.2446</PrimaryLatitude>
+            <PrimaryLongitude>-70.9673</PrimaryLongitude>
+            <SecondaryLatitude></SecondaryLatitude>
+            <SecondaryLongitude></SecondaryLongitude>
+            <LocationDescription>Fore River Bridge (3A) NB and SB Exit </LocationDescription>
+            <LaneBlockageDescription>Travel Lane(s) Affected: 0 Lane(s) Affected Description: </LaneBlockageDescription>
+            <RecurrenceDescription></RecurrenceDescription>
+        </Event>
+        <Event>
+            <EventId>2815129334866786</EventId>
+            <EventCreatedDate>2026-10-29T09:56:50</EventCreatedDate>
+            <EventStartDate>2026-10-30 at 09:00</EventStartDate>
+            <EventEndDate>2026-10-30 at 09:30</EventEndDate>
+            <LastUpdate>2026-10-29T09:56:50</LastUpdate>
+            <EventStatus>Open</EventStatus>
+            <EventCategory>Current Event</EventCategory>
+            <EventType>Traffic Incidents</EventType>
+            <EventSubType>Traffic (Planned / Scheduled Bridge Lift)</EventSubType>
+            <RoadwayName>Fore River Bridge (3A)</RoadwayName>
+            <Direction>NB and SB</Direction>
+            <LocationType>Point</LocationType>
+            <PrimaryLatitude>42.2446</PrimaryLatitude>
+            <PrimaryLongitude>-70.9673</PrimaryLongitude>
+            <SecondaryLatitude></SecondaryLatitude>
+            <SecondaryLongitude></SecondaryLongitude>
+            <LocationDescription>Fore River Bridge (3A) NB and SB Exit </LocationDescription>
+            <LaneBlockageDescription>Travel Lane(s) Affected: 0 Lane(s) Affected Description: </LaneBlockageDescription>
+            <RecurrenceDescription></RecurrenceDescription>
+        </Event>
+    </Events>
+</ERSEvents>
