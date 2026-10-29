@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAMPLE (fake data) - Boston Travel Risk Outlook Companion - Present Day to November 9, 2026</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root {
+    --ink: #0d1117;
+    --panel: #161b22;
+    --panel-2: #1c232d;
+    --line: #2a3441;
+    --text: #e6e9ee;
+    --muted: #97a3b3;
+    --accent: #7fb8d9;
+    --low: #3fb950;
+    --medium: #e3b341;
+    --high: #f0883e;
+    --very-high: #f85149;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: "Helvetica Neue", Arial, system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* Ticker */
+  .ticker {
+    position: sticky; top: 0; z-index: 1000;
+    background: #0a2540; border-bottom: 1px solid #1d4a72;
+    overflow: hidden; white-space: nowrap;
+  }
+  .ticker-label {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    display: flex; align-items: center; padding: 0 14px;
+    background: #0a2540; color: #fff; font-weight: 700; font-size: 12px;
+    z-index: 2; box-shadow: 14px 0 12px -8px #0a2540;
+  }
+  .ticker-track {
+    display: inline-block; padding: 9px 0 9px 150px;
+    animation: scroll 90s linear infinite;
+  }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  .ticker-item { display: inline-block; padding: 0 28px; color: #d8e8f5; font-size: 13px; }
+  .ticker-item b { color: #fff; font-weight: 700; margin-right: 6px; }
+  .ticker-sep { color: #3d6a92; padding: 0 4px; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+  /* Layout */
+  main { max-width: 1280px; margin: 0 auto; padding: 28px 24px 56px; }
+  header h1 {
+    font-family: Georgia, "Times New Roman", serif; font-weight: 400;
+    font-size: 40px; letter-spacing: -0.01em; margin: 0 0 6px; color: #fff;
+  }
+  .meta { color: var(--muted); font-size: 13px; margin: 0 0 6px; }
+  .meta strong { color: var(--text); font-weight: 600; }
+  .section {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 20px 22px; margin-top: 20px;
+  }
+  .section h2 {
+    font-family: Georgia, "Times New Roman", serif; font-weight: 400;
+    font-size: 22px; margin: 0 0 12px; color: #fff;
+  }
+  .glance ul { margin: 0; padding-left: 18px; }
+  .glance li { margin-bottom: 8px; }
+  .glance li:last-child { margin-bottom: 0; }
+
+  /* Rubric */
+  .rubric { display: grid; grid-template-columns: 130px 1fr; gap: 8px 16px; align-items: start; }
+  .pill {
+    display: inline-block; min-width: 92px; text-align: center;
+    padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #0d1117;
+  }
+  .pill.low { background: var(--low); }
+  .pill.medium { background: var(--medium); }
+  .pill.high { background: var(--high); }
+  .pill.very-high { background: var(--very-high); }
+  .rubric-note { margin-top: 14px; color: var(--muted); font-size: 13px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 10px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; font-size: 13px; border-bottom: 1px solid #3a4655; }
+  td.event-name { color: #fff; font-weight: 600; min-width: 170px; }
+  td.note { color: var(--muted); font-size: 13px; max-width: 280px; }
+  .controls { display: flex; gap: 10px; margin-bottom: 12px; }
+  .controls input {
+    background: var(--panel-2); border: 1px solid var(--line); color: var(--text);
+    padding: 8px 12px; border-radius: 6px; width: 260px; font: inherit;
+  }
+  .controls input:focus, a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .empty { color: var(--muted); padding: 16px 10px; display: none; }
+
+  /* Map */
+  #map { height: 460px; border-radius: 6px; border: 1px solid var(--line); z-index: 1; }
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .dot-loc { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 2px solid #0d1117; display: inline-block; }
+  .dot-event { width: 14px; height: 14px; background: var(--high); border: 2px solid #0d1117; transform: rotate(45deg); display: inline-block; }
+  .pending { color: var(--medium); }
+  .dot-incident { width: 14px; height: 14px; background: #e3b341; border: 2px solid #0d1117; border-radius: 3px; display: inline-block; }
+  .dot-incident-red { width: 14px; height: 14px; background: var(--very-high); border: 2px solid #0d1117; border-radius: 50%; display: inline-block; }
+  .dot-unrest { width: 14px; height: 14px; background: #b392f0; border: 2px solid #0d1117; border-radius: 50%; display: inline-block; }
+  h3.sub { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 17px; color: #fff; margin: 18px 0 8px; }
+  #traffic-map { height: 380px; border-radius: 6px; border: 1px solid var(--line); z-index: 1; }
+
+  /* Weather */
+  .forecast-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 10px; margin-top: 6px; }
+  .day { background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 12px; }
+  .day-name { font-weight: 700; color: #fff; }
+  .day-date { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+  .temps { font-size: 18px; color: #fff; }
+  .temps span { color: var(--muted); font-size: 14px; }
+  .day-desc { font-size: 12px; color: var(--muted); margin-top: 6px; min-height: 32px; }
+  .precip { font-size: 12px; color: var(--accent); margin-top: 6px; }
+  .aq { display: grid; grid-template-columns: 180px 1fr; gap: 14px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .aq-value { font-size: 22px; color: #fff; font-family: Georgia, serif; }
+  .aq-text { color: var(--muted); font-size: 14px; }
+
+  /* Crime */
+  .crime-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 8px; }
+  .crime-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 14px; }
+  .crime-card .count { font-family: Georgia, serif; font-size: 30px; color: #fff; margin-top: 4px; }
+  .crime-card .label { color: var(--muted); font-size: 13px; }
+  .embed-frame { width: 100%; height: 420px; border: 1px solid var(--line); border-radius: 6px; margin-top: 14px; background: #0d1117; }
+  .crime-link { display: inline-block; margin-top: 12px; color: var(--accent); }
+  .stamp { color: var(--muted); font-size: 12px; margin-top: 10px; }
+
+  footer { margin-top: 24px; color: var(--muted); font-size: 12px; }
+  footer p { margin: 0 0 8px; }
+
+  @media (max-width: 720px) {
+    header h1 { font-size: 30px; }
+    .rubric { grid-template-columns: 1fr; }
+    .aq { grid-template-columns: 1fr; }
+    .controls input { width: 100%; }
+    #map { height: 340px; }
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--line); padding: 8px 0; }
+    td { border: none; padding: 4px 0; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div style="background:#f85149;color:#0d1117;padding:10px 16px;font:700 14px Arial;text-align:center;position:sticky;top:0;z-index:2000">SAMPLE PREVIEW: every number on this page is FAKE TEST DATA used to check the pipeline. Do not use it for travel decisions.</div>
+
+<div class="ticker" role="marquee" aria-label="Boston news ticker">
+  <div class="ticker-label">Boston news</div>
+  <div class="ticker-track" id="ticker-track"></div>
+</div>
+
+<main>
+
+  <header>
+    <h1>Boston Travel Risk Outlook Companion - Present Day to November 9, 2026</h1>
+    <p class="meta">Travel window: <strong>Nov 8-9, 2026</strong>. This edition covers the 7-day outlook below.</p>
+    <p class="meta">Data Snapshot: <strong>October 21, 2026</strong>. Updated 6:00 AM ET. Refreshes every 6 hours (12:00 AM, 6:00 AM, 12:00 PM, and 6:00 PM ET). Sections marked stale kept their last good data. Data can be refreshed upon request.</p>
+  </header>
+
+  <section class="section glance" aria-labelledby="glance-title">
+    <h2 id="glance-title">Next 7 Days at a Glance (Oct 21-28, 2026)</h2>
+    <ul>
+      <li><strong>Weather (Oct 21-28):</strong> Highs 58 to 64 F, lows 42 to 48 F. Highest precipitation chance is 30% on Tue.</li>
+      <li><strong>Air quality:</strong> AQI 51 (Moderate) per AirNow.</li>
+      <li><strong>Events:</strong> 2 of the top 7 events are rated <strong style="color:var(--medium)">Medium</strong> and 5 are rated <strong style="color:var(--low)">Low</strong>. Largest: Celtics vs. Knicks at TD Garden on Fri, Oct 23, 7:00 PM.</li>
+      <li><strong>Protests:</strong> Bearing Witness @ ICE, Wed, Oct 21 11:00 AM to 1:00 PM (weekly); Bearing Witness @ ICE, Wed, Oct 28 11:00 AM to 1:00 PM (weekly) (manual list, rated <strong style="color:var(--low)">Low</strong>).</li>
+      <li><strong>Transit and traffic:</strong> 1 incidents and 2 work zones within 30 miles in MassDOT feeds. 1 active MBTA subway alerts at severity 5 or higher.</li>
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="events-title">
+    <h2 id="events-title">Public Events</h2>
+    <div class="controls">
+      <input type="search" id="filter" placeholder="Search events, venues, regions" aria-label="Search events">
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Date(s)</th><th>Event</th><th>Category</th><th>Region</th><th>Venue / Area</th><th>Est. Attendance</th><th>Disruption Rating</th>
+        </tr>
+      </thead>
+      <tbody id="event-body">
+        <tr>
+          <td data-label="Date(s)">Fri, Oct 23<br>7:00 PM</td>
+          <td data-label="Event" class="event-name">Celtics vs. Knicks</td>
+          <td data-label="Category">Basketball (NBA)</td>
+          <td data-label="Region">West End / North Station, Boston</td>
+          <td data-label="Venue / Area">TD Garden</td>
+          <td data-label="Est. Attendance" class="note">About 18,624 (official basketball capacity per public sources). Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan.</td>
+          <td data-label="Disruption Rating"><span class="pill medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td data-label="Date(s)">Sun, Oct 25<br>8:00 PM</td>
+          <td data-label="Event" class="event-name">Rod Wave: Don&#x27;t Look Down Tour</td>
+          <td data-label="Category">Concert (Hip-Hop/Rap)</td>
+          <td data-label="Region">West End / North Station, Boston</td>
+          <td data-label="Venue / Area">TD Garden</td>
+          <td data-label="Est. Attendance" class="note">About 17,500 (venue capacity). Public sources range from about 17,500 to 18,600 for concerts, so treat concert capacity as a rounded estimate. Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan.</td>
+          <td data-label="Disruption Rating"><span class="pill medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td data-label="Date(s)">Fri, Oct 23<br>7:00 PM</td>
+          <td data-label="Event" class="event-name">Quadeca</td>
+          <td data-label="Category">Concert (Hip-Hop/Rap)</td>
+          <td data-label="Region">Fenway, Boston</td>
+          <td data-label="Venue / Area">House of Blues Boston</td>
+          <td data-label="Est. Attendance" class="note">Capacity per House of Blues capacity breakdown: Music Hall standing/reception about 1,800 to 2,000 (seated theater about 315 to 350). Room for this show not confirmed. Floor area not provided, so exit density is not estimated. Rated Low; confirm the room and times with the venue.</td>
+          <td data-label="Disruption Rating"><span class="pill low">Low</span></td>
+        </tr>
+        <tr>
+          <td data-label="Date(s)">Sat, Oct 24<br>8:00 PM</td>
+          <td data-label="Event" class="event-name">The Jayhawks</td>
+          <td data-label="Category">Concert (Rock)</td>
+          <td data-label="Region">Downtown Boston</td>
+          <td data-label="Venue / Area">Shubert Theatre</td>
+          <td data-label="Est. Attendance" class="note">Total seating about 1,500 to 1,600 (orchestra, mezzanine, balcony, and box seats). Seated audience, so standing density is not expected. Mezzanine is reached by stairs only, with no elevator, which can slow exits for some attendees. Rated Low; confirm the seating and times with the venue.</td>
+          <td data-label="Disruption Rating"><span class="pill low">Low</span></td>
+        </tr>
+        <tr>
+          <td data-label="Date(s)">Mon, Oct 26<br>7:00 PM</td>
+          <td data-label="Event" class="event-name">Watsky</td>
+          <td data-label="Category">Concert (Hip-Hop/Rap)</td>
+          <td data-label="Region">Davis Square, Somerville</td>
+          <td data-label="Venue / Area">Somerville Theatre</td>
+          <td data-label="Est. Attendance" class="note">Main theatre about 840 seats (815 for general admission shows; up to 900 in some listings): orchestra 379, balcony and mezzanine 461. Crystal Ballroom in the same building holds 500 standing or about 230 to 240 at cabaret tables. Room for this show not confirmed. Seated audience, so standing density is not expected. Rated Low; confirm the room and times with the venue.</td>
+          <td data-label="Disruption Rating"><span class="pill low">Low</span></td>
+        </tr>
+        <tr>
+          <td data-label="Date(s)">Thu, Oct 22<br>9:00 PM</td>
+          <td data-label="Event" class="event-name">Indie Night</td>
+          <td data-label="Category">Concert (Rock)</td>
+          <td data-label="Region">Boston, MA</td>
+          <td data-label="Venue / Area">Paradise Rock Club</td>
+          <td data-label="Est. Attendance" class="note">Venue capacity not verified. Rated Low provisionally; add the venue to data/venues.json to improve this estimate.</td>
+          <td data-label="Disruption Rating"><span class="pill low">Low</span></td>
+        </tr>
+        <tr>
+          <td data-label="Date(s)">Seasonal<br>(end date not confirmed)</td>
+          <td data-label="Event" class="event-name">Cycleboat Boston harbor cruises</td>
+          <td data-label="Category">Seasonal tourism</td>
+          <td data-label="Region">Charlestown, Boston Harbor</td>
+          <td data-label="Venue / Area">Pier 6, Charlestown Navy Yard</td>
+          <td data-label="Est. Attendance" class="note">Not published. Each boat seats 12 pedalers plus a bow lounge, so density stays under 2 people per m². Estimate provisional until the operator confirms its schedule.</td>
+          <td data-label="Disruption Rating"><span class="pill low">Low</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="meta" style="margin-bottom:8px">Top 10 events in the Oct 21-28 window, ranked by potential impact on travel (capacity first). Showing 7 of 7 found. Ticketmaster does not list every venue; Cycleboat comes from the manual list. Updated Oct 21, 2026 6:00 AM ET.</p>
+    <p class="empty" id="empty-msg">No events match that search.</p>
+    <p class="stamp">Ratings follow the Disruption Rating Rubric. Density is estimated for large venues and stays provisional until the venue confirms capacity and exit plans.</p>
+
+    <h3 class="sub">Event Map</h3>
+    <div id="map" role="region" aria-label="Map of Boston events"></div>
+    <div class="legend">
+      <span><i class="dot-event"></i> Event venue (click a pin to view each event there)</span>
+    </div>
+    <p class="stamp">Pins are placed from each venue address and are approximate. Confirm each venue before an operational decision. Map tiles: Esri, with OpenStreetMap data.</p>
+  </section>
+
+  <section class="section" aria-labelledby="weather-title">
+    <h2 id="weather-title">Weather: Boston (Oct 21-28)</h2>
+    <p class="meta">Forecast source: National Weather Service (api.weather.gov), forecast office BOX. Forecast issued Oct 21, 2026 5:30 AM ET. Updated Oct 21, 2026 6:00 AM ET.</p>
+    <div class="forecast-grid">
+      <div class="day"><div class="day-name">Wed</div><div class="day-date">Oct 21 (today)</div><div class="temps">58&deg; <span>/ 42&deg;</span></div><div class="day-desc">Mostly sunny</div><div class="precip">Precip 0%</div></div>
+      <div class="day"><div class="day-name">Thu</div><div class="day-date">Oct 22</div><div class="temps">59&deg; <span>/ 43&deg;</span></div><div class="day-desc">Mostly sunny</div><div class="precip">Precip 5%</div></div>
+      <div class="day"><div class="day-name">Fri</div><div class="day-date">Oct 23</div><div class="temps">60&deg; <span>/ 44&deg;</span></div><div class="day-desc">Mostly sunny</div><div class="precip">Precip 10%</div></div>
+      <div class="day"><div class="day-name">Sat</div><div class="day-date">Oct 24</div><div class="temps">61&deg; <span>/ 45&deg;</span></div><div class="day-desc">Mostly sunny</div><div class="precip">Precip 15%</div></div>
+      <div class="day"><div class="day-name">Sun</div><div class="day-date">Oct 25</div><div class="temps">62&deg; <span>/ 46&deg;</span></div><div class="day-desc">Mostly sunny</div><div class="precip">Precip 20%</div></div>
+      <div class="day"><div class="day-name">Mon</div><div class="day-date">Oct 26</div><div class="temps">63&deg; <span>/ 47&deg;</span></div><div class="day-desc">Mostly sunny</div><div class="precip">Precip 25%</div></div>
+      <div class="day"><div class="day-name">Tue</div><div class="day-date">Oct 27</div><div class="temps">64&deg; <span>/ 48&deg;</span></div><div class="day-desc">Mostly sunny</div><div class="precip">Precip 30%</div></div>
+    </div>
+    <div class="aq">
+      <div>
+        <div class="day-name">Air Quality</div>
+        <div class="aq-value">Moderate (51)</div>
+      </div>
+      <div class="aq-text">Source: AirNow (EPA), Boston reporting area. Current AQI 51 (Moderate), driven by PM2.5. Air quality is acceptable. Unusually sensitive people should consider limiting prolonged outdoor exertion. Forecast: Thu Oct 22 AQI 55 (Moderate); Fri Oct 23 AQI 40 (Good).  Updated Oct 21, 2026 6:00 AM ET.</div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="unrest-title">
+    <h2 id="unrest-title">Civil Unrest</h2>
+    <p class="meta">Manually maintained list: no reliable protest feed exists, so the automation cannot refresh this section. Last reviewed Oct 19. Sources checked: Mass 50501 events (mass50501.org/events); Boston Indivisible calendar (bindivisible.org/calendar); No Kings Boston (nokings.boston); findaprotest.info (listings load by script and could not be read); news coverage.</p>
+    <table>
+      <thead>
+        <tr><th>Date(s)</th><th>Event</th><th>Category</th><th>Region</th><th>Venue / Area</th><th>Est. Attendance</th><th>Disruption Rating</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Date(s)">Wed, Oct 21<br>11:00 AM to 1:00 PM (weekly)</td>
+          <td data-label="Event" class="event-name">Bearing Witness @ ICE</td>
+          <td data-label="Category">Vigil / protest</td>
+          <td data-label="Region">Burlington, MA</td>
+          <td data-label="Venue / Area">1000 District Ave, outside the ICE field office</td>
+          <td data-label="Est. Attendance" class="note">Small standing vigil, typically a few dozen to a few hundred people. Density well under 2 people per m². Weekly Wednesday schedule confirmed by 2026 reporting.</td>
+          <td data-label="Disruption Rating"><span class="pill low">Low</span></td>
+        </tr>
+        <tr>
+          <td data-label="Date(s)">Wed, Oct 28<br>11:00 AM to 1:00 PM (weekly)</td>
+          <td data-label="Event" class="event-name">Bearing Witness @ ICE</td>
+          <td data-label="Category">Vigil / protest</td>
+          <td data-label="Region">Burlington, MA</td>
+          <td data-label="Venue / Area">1000 District Ave, outside the ICE field office</td>
+          <td data-label="Est. Attendance" class="note">Small standing vigil, typically a few dozen to a few hundred people. Density well under 2 people per m². Weekly Wednesday schedule confirmed by 2026 reporting.</td>
+          <td data-label="Disruption Rating"><span class="pill low">Low</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="stamp">Ratings follow the Disruption Rating Rubric. Both small-group formats here are Low because density stays well under 2 people per m².</p>
+
+    <h3 class="sub">Civil Unrest Map</h3>
+    <div id="unrest-map" role="region" aria-label="Map of civil unrest events in the Boston area"></div>
+    <div class="legend">
+      <span><i class="dot-unrest"></i> Civil unrest event</span>
+    </div>
+    <p class="stamp">Pins are approximate. Events with no single location (for example, statewide actions) are not pinned. Map tiles: Esri, with OpenStreetMap data.</p>
+  </section>
+
+  <section class="section" aria-labelledby="traffic-title">
+    <h2 id="traffic-title">Boston Travel and Traffic Conditions</h2>
+    <p class="meta">Source: MassDOT roadway events feed and Connected Work Zones feed. Updated Oct 21, 2026 6:00 AM ET. MassDOT's feeds do not include every incident in Massachusetts, so a missing item does not mean a road is clear. Chart shows items within 30 miles of downtown; the map shows Greater Boston only. Use mass511.com for live conditions. </p>
+    <h3 class="sub">Incident (1)</h3>
+        <div class="forecast-grid">
+      <div class="day"><div class="day-name">I-93 SB</div><div class="day-date">Boston area</div><div class="day-desc">Crash on I-93 SB, left lane blocked &lt;script&gt;alert(1)&lt;/script&gt;</div><div class="precip">Reported: Started Oct 21 5:40 AM</div></div>
+    </div>
+    <p class="meta" style="margin-top:12px">MBTA service alerts (subway and light rail, severity 5 or higher, 1 matching): Red Line: delays of about 15 minutes due to a signal problem. (Red) Updated Oct 21, 2026 6:00 AM ET.</p>
+    <h3 class="sub">Construction (2)</h3>
+        <div class="forecast-grid">
+      <div class="day"><div class="day-name">Storrow Dr EB</div><div class="day-date">Boston area</div><div class="day-desc">Overnight lane closures for paving</div><div class="precip">Reported: Started Oct 21 8:00 PM. Ends: Oct 22 5:00 AM</div></div>
+      <div class="day"><div class="day-name">Rt 28 southbound</div><div class="day-date">Boston area</div><div class="day-desc">Road work between Rt 93 and Rt 60</div><div class="precip">Reported: Started Oct 21 12:00 AM. Ends: Oct 30 12:00 AM</div></div>
+    </div>
+
+    <h3 class="sub">Traffic Map</h3>
+    <div id="traffic-map" role="region" aria-label="Map of traffic incidents and construction"></div>
+    <div class="legend">
+      <span><i style="display:inline-block;width:14px;height:14px;background:#f85149;border:2px solid #0d1117;border-radius:50%"></i> Incident</span>
+      <span><i class="dot-incident"></i> Construction</span>
+    </div>
+    <p class="stamp">Pins use the coordinates supplied by the MassDOT feeds, not hand placement. Hover over a pin for details. Items without coordinates appear in the chart only.</p>
+  </section>
+
+  <section class="section" aria-labelledby="crime-title">
+    <h2 id="crime-title">Boston Police Crime Trends</h2>
+    <p class="meta">Source: Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present). Counts are offense rows through 2026-10-20, complete days only. These may differ from the BPD dashboard, which uses its own method and refresh timing. Updated Oct 21, 2026 6:00 AM ET.</p>
+    <div class="crime-grid">
+      <div class="crime-card"><div class="label">Last 7 days</div><div class="count" id="crime-7">Enter</div><div class="label" id="chg-7"></div></div>
+      <div class="crime-card"><div class="label">Last 30 days</div><div class="count" id="crime-30">Enter</div><div class="label" id="chg-30"></div></div>
+      <div class="crime-card"><div class="label">Last 365 days</div><div class="count" id="crime-365">Enter</div><div class="label" id="chg-365"></div></div>
+    </div>
+    <p class="stamp" id="crime-stamp">Counts not yet entered.</p>
+    <iframe class="embed-frame" src="https://boston.maps.arcgis.com/apps/dashboards/bfeaa8024cd646c0a9789effd22ec0a3" title="Boston Police daily crime trends dashboard" loading="lazy"></iframe>
+    <a class="crime-link" href="https://boston.maps.arcgis.com/apps/dashboards/bfeaa8024cd646c0a9789effd22ec0a3" target="_blank" rel="noopener">Open the BPD crime dashboard in a new tab</a>
+
+    <h3 class="sub">Crime Map</h3>
+    <p class="meta">Due to interface restrictions, a map of criminal activity is not available. Please reference a map of criminal activity here: <a class="crime-link" style="margin-top:0" href="https://experience.arcgis.com/experience/ae8b6e6227754465a5a1cf04a0763c0a/page/Map" target="_blank" rel="noopener">City of Boston Crime Mapping</a></p>
+  </section>
+
+  <section class="section" aria-labelledby="rubric-title">
+    <h2 id="rubric-title">Disruption Rating Rubric (Crowd Density)</h2>
+    <p class="meta">Based on Professor G. Keith Still, "Crowd Risk Analysis and Crowd Safety" (Event Industry Association of Ireland). The study's key thresholds: about 2 people per m² is the planning baseline; above 3 people per m² moving crowds slow sharply (the dynamic redline); above 5 people per m² standing crowds reach the static redline, where shockwaves and crush risk begin.</p>
+    <table>
+      <thead>
+        <tr><th>Level</th><th>Crowd density (people per m²)</th><th>Physical movement dynamics</th><th>Required operational actions</th><th>Trip examples</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Level"><span class="pill low">Low</span></td>
+          <td data-label="Density">Under 2.0</td>
+          <td data-label="Movement">Individuals can walk freely. Two-way movement and self-routing are easy.</td>
+          <td data-label="Actions">Normal monitoring. Keep entrances and exits clear.</td>
+          <td data-label="Trip examples">Quadeca; The Jayhawks; Watsky; Indie Night; and 3 more.</td>
+        </tr>
+        <tr>
+          <td data-label="Level"><span class="pill medium">Medium</span></td>
+          <td data-label="Density">2.0 to 3.0</td>
+          <td data-label="Movement">Movement becomes restricted. Critical density is approaching, and flow capacity reaches its peak.</td>
+          <td data-label="Actions">Notify the control room. Deploy stewards to high-density zones. Prepare to redirect crowd flows.</td>
+          <td data-label="Trip examples">Celtics vs. Knicks; Rod Wave: Don&#x27;t Look Down Tour (estimated at 2.0 to 3.0 people per m²; provisional until the venue confirms its exit plan).</td>
+        </tr>
+        <tr>
+          <td data-label="Level"><span class="pill high">High</span></td>
+          <td data-label="Density">Above 3.0 to 4.5</td>
+          <td data-label="Movement">Walking speeds drop sharply. Flow halts in stop-and-go waves, and involuntary contact begins.</td>
+          <td data-label="Actions">Upstream intervention required. Slow or pause inbound gates. Open secondary relief exits.</td>
+          <td data-label="Trip examples">None identified. Ratings above Medium are assigned by a person, not by the automation. Re-rate any event that draws large crowds into a single corridor.</td>
+        </tr>
+        <tr>
+          <td data-label="Level"><span class="pill very-high">Very High</span></td>
+          <td data-label="Density">Above 4.5</td>
+          <td data-label="Movement">The space is saturated. Shockwaves ripple through the crowd, with a high risk of progressive crowd collapse.</td>
+          <td data-label="Actions">Immediate emergency mode. Halt all inflow. Execute controlled decompression of the crowd.</td>
+          <td data-label="Trip examples">None identified.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="rubric-note">Ratings use density where an estimate is available. Where it isn't, the event is rated provisionally on attendance, venue size, and closure scope. The study's static redline is above 5 people per m²; the Very High band starts at 4.5 as a more conservative trigger, following the density table this rubric was built from.</p>
+  </section>
+
+  <footer>
+    <p><strong>Sources (latest successful refresh Oct 21, 2026 6:00 AM ET):</strong> National Weather Service forecast; AirNow (EPA) air quality; MBTA V3 API alerts; MassDOT roadway events and Connected Work Zones feeds; Analyze Boston crime incident reports; Ticketmaster Discovery API; US Census Geocoder for venue pins. Map tiles from Esri and OpenStreetMap.</p>
+    <p><strong>Manual sections:</strong> Protest list (last reviewed Oct 19) and Cycleboat. The automation cannot refresh these.</p>
+    <p><strong>Not covered:</strong> Live traffic conditions beyond the MassDOT feeds (check mass511.com), and any event Ticketmaster does not list.</p>
+  </footer>
+
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  // ---------- Ticker ----------
+  const tickerItems = [
+  [
+    "Air quality:",
+    "Boston reads Moderate (AQI 51) per AirNow. Air quality is acceptable. Unusually sensitive people should consider limiting prolonged outdoor exertion."
+  ],
+  [
+    "Weather:",
+    "Highs 58 to 64 F from Oct 21-28, with precipitation chances up to 30% (National Weather Service)."
+  ],
+  [
+    "Transit:",
+    "Red Line: delays of about 15 minutes due to a signal problem."
+  ],
+  [
+    "Event:",
+    "Celtics vs. Knicks at TD Garden, Fri, Oct 23, 7:00 PM. Rated Medium."
+  ],
+  [
+    "Event:",
+    "Rod Wave: Don&#x27;t Look Down Tour at TD Garden, Sun, Oct 25, 8:00 PM. Rated Medium."
+  ],
+  [
+    "Event:",
+    "Quadeca at House of Blues Boston, Fri, Oct 23, 7:00 PM. Rated Low."
+  ],
+  [
+    "Protest:",
+    "Bearing Witness @ ICE, Wed, Oct 21 11:00 AM to 1:00 PM (weekly) (manual list)."
+  ],
+  [
+    "Travel window:",
+    "Nov 8 to 9 is outside this edition. Refresh that picture about one month before travel."
+  ]
+];
+  const track = document.getElementById("ticker-track");
+  const tickerHTML = tickerItems.map(([l, t]) =>
+    `<span class="ticker-item"><b>${l}</b>${t}</span><span class="ticker-sep">|</span>`).join("");
+  track.innerHTML = tickerHTML + tickerHTML;
+
+  // ---------- Map ----------
+  // Coordinates are approximate and should be verified against each address.
+  if (!window.L) {
+    document.getElementById("map").innerHTML =
+      "<p style='padding:16px;color:#97a3b3'>The map could not load. Check your internet connection, then reopen this file in a browser.</p>";
+  } else {
+  const map = L.map("map").setView([42.3580, -71.0800], 12);
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 19,
+    attribution: "Tiles &copy; Esri, HERE, Garmin, OpenStreetMap contributors"
+  }).addTo(map);
+
+  const locationIcon = L.divIcon({
+    className: "",
+    html: '<div style="width:16px;height:16px;border-radius:50%;background:#7fb8d9;border:2px solid #0d1117"></div>',
+    iconSize: [16, 16], iconAnchor: [8, 8]
+  });
+  const eventIcon = L.divIcon({
+    className: "",
+    html: '<div style="width:14px;height:14px;background:#f0883e;border:2px solid #0d1117;transform:rotate(45deg)"></div>',
+    iconSize: [14, 14], iconAnchor: [7, 7]
+  });
+
+  // Event map: one pin per venue. Venues with several events open a pop-up that lists each event.
+  // Coordinates are approximate and should be verified against each address.
+  const eventVenues = [
+  {
+    "venue": "TD Garden",
+    "address": "100 Legends Way, Boston, MA 02114",
+    "lat": 42.3662,
+    "lng": -71.0621,
+    "events": [
+      {
+        "name": "Celtics vs. Knicks",
+        "when": "Fri, Oct 23, 7:00 PM",
+        "category": "Basketball (NBA)",
+        "rating": "Medium",
+        "note": "About 18,624 (official basketball capacity per public sources). Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan."
+      },
+      {
+        "name": "Rod Wave: Don&#x27;t Look Down Tour",
+        "when": "Sun, Oct 25, 8:00 PM",
+        "category": "Concert (Hip-Hop/Rap)",
+        "rating": "Medium",
+        "note": "About 17,500 (venue capacity). Public sources range from about 17,500 to 18,600 for concerts, so treat concert capacity as a rounded estimate. Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan."
+      }
+    ]
+  },
+  {
+    "venue": "House of Blues Boston",
+    "address": "15 Lansdowne St, Boston, MA 02215",
+    "lat": 42.3662,
+    "lng": -71.0621,
+    "events": [
+      {
+        "name": "Quadeca",
+        "when": "Fri, Oct 23, 7:00 PM",
+        "category": "Concert (Hip-Hop/Rap)",
+        "rating": "Low",
+        "note": "Capacity per House of Blues capacity breakdown: Music Hall standing/reception about 1,800 to 2,000 (seated theater about 315 to 350). Room for this show not confirmed. Floor area not provided, so exit density is not estimated. Rated Low; confirm the room and times with the venue."
+      }
+    ]
+  },
+  {
+    "venue": "Shubert Theatre",
+    "address": "265 Tremont St, Boston, MA 02116",
+    "lat": 42.3662,
+    "lng": -71.0621,
+    "events": [
+      {
+        "name": "The Jayhawks",
+        "when": "Sat, Oct 24, 8:00 PM",
+        "category": "Concert (Rock)",
+        "rating": "Low",
+        "note": "Total seating about 1,500 to 1,600 (orchestra, mezzanine, balcony, and box seats). Seated audience, so standing density is not expected. Mezzanine is reached by stairs only, with no elevator, which can slow exits for some attendees. Rated Low; confirm the seating and times with the venue."
+      }
+    ]
+  },
+  {
+    "venue": "Somerville Theatre",
+    "address": "55 Davis Square, Somerville, MA 02144",
+    "lat": 42.3662,
+    "lng": -71.0621,
+    "events": [
+      {
+        "name": "Watsky",
+        "when": "Mon, Oct 26, 7:00 PM",
+        "category": "Concert (Hip-Hop/Rap)",
+        "rating": "Low",
+        "note": "Main theatre about 840 seats (815 for general admission shows; up to 900 in some listings): orchestra 379, balcony and mezzanine 461. Crystal Ballroom in the same building holds 500 standing or about 230 to 240 at cabaret tables. Room for this show not confirmed. Seated audience, so standing density is not expected. Rated Low; confirm the room and times with the venue."
+      }
+    ]
+  },
+  {
+    "venue": "Paradise Rock Club",
+    "address": "1 Test St",
+    "lat": 42.36,
+    "lng": -71.06,
+    "events": [
+      {
+        "name": "Indie Night",
+        "when": "Thu, Oct 22, 9:00 PM",
+        "category": "Concert (Rock)",
+        "rating": "Low",
+        "note": "Venue capacity not verified. Rated Low provisionally; add the venue to data/venues.json to improve this estimate."
+      }
+    ]
+  },
+  {
+    "venue": "Pier 6, Charlestown Navy Yard",
+    "address": "",
+    "lat": 42.3723,
+    "lng": -71.0557,
+    "events": [
+      {
+        "name": "Cycleboat Boston harbor cruises",
+        "when": "Seasonal, (end date not confirmed)",
+        "category": "Seasonal tourism",
+        "rating": "Low",
+        "note": "Not published. Each boat seats 12 pedalers plus a bow lounge, so density stays under 2 people per m². Estimate provisional until the operator confirms its schedule."
+      }
+    ]
+  }
+];
+  function buildEventPopup(v) {
+    const items = v.events.map(e =>
+      `<details style="margin:4px 0"><summary style="cursor:pointer"><strong>${e.name}</strong><br><span style="color:#555">${e.when}</span></summary>` +
+      `<div style="margin:4px 0 0 4px;font-size:12px">${e.category}. Rating: ${e.rating}.<br>${e.note}</div></details>`
+    ).join("");
+    const count = v.events.length === 1 ? "1 event" : `${v.events.length} events`;
+    return `<div style="max-width:300px"><strong>${v.venue}</strong> (${count})<br><span style="color:#555;font-size:12px">${v.address}</span><hr style="margin:6px 0">${items}</div>`;
+  }
+  eventVenues.forEach(v => {
+    L.marker([v.lat, v.lng], { icon: eventIcon, title: v.venue })
+      .bindPopup(buildEventPopup(v), { maxWidth: 320 })
+      .addTo(map);
+  });
+
+  // Traffic map (Boston-area items with a known location). Pins are approximate.
+  const trafficMap = L.map("traffic-map").setView([42.4300, -71.1000], 9);
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 19,
+    attribution: "Tiles &copy; Esri, HERE, Garmin, OpenStreetMap contributors"
+  }).addTo(trafficMap);
+  const constructionIcon = L.divIcon({
+    className: "",
+    html: '<div style="width:14px;height:14px;background:#e3b341;border:2px solid #0d1117;border-radius:3px"></div>',
+    iconSize: [14, 14], iconAnchor: [7, 7]
+  });
+  const trafficEventIcon = L.divIcon({
+    className: "",
+    html: '<div style="width:14px;height:14px;background:#f0883e;border:2px solid #0d1117;transform:rotate(45deg)"></div>',
+    iconSize: [14, 14], iconAnchor: [7, 7]
+  });
+  const trafficIncidentIcon = L.divIcon({
+    className: "",
+    html: '<div style="width:14px;height:14px;background:#f85149;border:2px solid #0d1117;border-radius:50%"></div>',
+    iconSize: [14, 14], iconAnchor: [7, 7]
+  });
+  // Traffic items from the uploaded Boston 25 list (checked Oct 20, 2026). Coordinates are approximate.
+  const trafficItems = [
+  {
+    "name": "I-93 SB",
+    "type": "Incident",
+    "desc": "Crash on I-93 SB, left lane blocked &lt;script&gt;alert(1)&lt;/script&gt;",
+    "reported": "Started Oct 21 5:40 AM",
+    "delay": "Not provided",
+    "end": "Not provided",
+    "lat": 42.3875,
+    "lng": -71.0995,
+    "icon": "trafficIncidentIcon",
+    "boston": true
+  },
+  {
+    "name": "Storrow Dr EB",
+    "type": "Construction",
+    "desc": "Overnight lane closures for paving",
+    "reported": "Started Oct 21 8:00 PM",
+    "delay": "Not provided",
+    "end": "Oct 22 5:00 AM",
+    "lat": 42.3555,
+    "lng": -71.0815,
+    "icon": "constructionIcon",
+    "boston": true
+  },
+  {
+    "name": "Rt 28 southbound",
+    "type": "Construction",
+    "desc": "Road work between Rt 93 and Rt 60",
+    "reported": "Started Oct 21 12:00 AM",
+    "delay": "Not provided",
+    "end": "Oct 30 12:00 AM",
+    "lat": 42.41,
+    "lng": -71.1,
+    "icon": "constructionIcon",
+    "boston": true
+  }
+];
+  const trafficBounds = [];
+  trafficItems.filter(t => t.boston).forEach(t => {
+    const delay = t.delay !== "Not provided" ? `<br>Wait/delay: ${t.delay}` : "";
+    const end = t.end !== "Not provided" ? `<br>Ends: ${t.end}` : "";
+    const detail = `${t.desc}<br>Reported: ${t.reported}${delay}${end}`;
+    const body = `<strong>${t.name}</strong><br>${t.type}${t.boston ? "" : " (outside Boston)"}<br><span style="font-size:12px">${detail}</span>`;
+    L.marker([t.lat, t.lng], { icon: ({ trafficIncidentIcon, constructionIcon })[t.icon] })
+      .bindPopup(body)
+      .bindTooltip(body, { direction: "top", sticky: true })
+      .addTo(trafficMap);
+    trafficBounds.push([t.lat, t.lng]);
+  });
+  if (trafficBounds.length) { trafficMap.fitBounds(trafficBounds, { padding: [20, 20] }); }
+  // Civil unrest map (Burlington ICE office, approximate pin)
+  const unrestMap = L.map("unrest-map").setView([42.4800, -71.2000], 12);
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 19,
+    attribution: "Tiles &copy; Esri, HERE, Garmin, OpenStreetMap contributors"
+  }).addTo(unrestMap);
+  const unrestIcon = L.divIcon({
+    className: "",
+    html: '<div style="width:14px;height:14px;background:#b392f0;border:2px solid #0d1117;border-radius:50%"></div>',
+    iconSize: [14, 14], iconAnchor: [7, 7]
+  });
+  const unrestPins = [
+  {
+    "name": "Bearing Witness @ ICE",
+    "when": "Wed, Oct 21, 11:00 AM to 1:00 PM (weekly)",
+    "note": "Small standing vigil, typically a few dozen to a few hundred people. Density well under 2 people per m². Weekly Wednesday schedule confirmed by 2026 reporting.",
+    "lat": 42.4885,
+    "lng": -71.2175
+  }
+];
+  unrestPins.forEach(p => {
+    L.marker([p.lat, p.lng], { icon: unrestIcon })
+      .bindPopup(`<strong>${p.name}</strong><br>${p.when}<br><span style="font-size:12px">${p.note}</span>`)
+      .addTo(unrestMap);
+  });
+  }
+
+  // ---------- Crime counts (filled by the pipeline) ----------
+  const crimeCounts = {
+  "d7": {
+    "now": 21,
+    "prev": 21,
+    "label": "Last 7 days"
+  },
+  "d30": {
+    "now": 90,
+    "prev": 90,
+    "label": "Last 30 days"
+  },
+  "d365": {
+    "now": 1095,
+    "prev": 764,
+    "label": "Last 365 days"
+  },
+  "asOf": "2026-10-20",
+  "stamp": "Through 2026-10-20 (complete days only). Source: Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)."
+};
+  function renderCrime() {
+    const set = (key, id, chgId) => {
+      const c = crimeCounts[key];
+      if (!c || c.now == null || c.prev == null) {
+        document.getElementById(id).textContent = "n/a";
+        document.getElementById(chgId).textContent = "Not available this run";
+        return;
+      }
+      document.getElementById(id).textContent = c.now.toLocaleString();
+      const pct = ((c.now - c.prev) / c.prev) * 100;
+      const dir = pct < 0 ? "down" : "up";
+      document.getElementById(chgId).textContent =
+        `${dir === "down" ? "Down" : "Up"} ${Math.abs(pct).toFixed(0)}% vs. prior period (${c.prev.toLocaleString()})`;
+    };
+    set("d7", "crime-7", "chg-7");
+    set("d30", "crime-30", "chg-30");
+    set("d365", "crime-365", "chg-365");
+    document.getElementById("crime-stamp").textContent =
+      crimeCounts.stamp || ("As of " + crimeCounts.asOf);
+  }
+  renderCrime();
+
+  // ---------- Event filter ----------
+  const filter = document.getElementById("filter");
+  const rows = Array.from(document.querySelectorAll("#event-body tr"));
+  const emptyMsg = document.getElementById("empty-msg");
+  filter.addEventListener("input", () => {
+    const q = filter.value.trim().toLowerCase();
+    let visible = 0;
+    rows.forEach(row => {
+      const match = row.textContent.toLowerCase().includes(q);
+      row.style.display = match ? "" : "none";
+      if (match) visible++;
+    });
+    emptyMsg.style.display = visible === 0 ? "block" : "none";
+  });
+</script>
+</body>
+</html>
