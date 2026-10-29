@@ -1,0 +1,21 @@
+{
+  "_comment": "Maintained by hand. No reliable protest feed exists, so the pipeline renders this file and flags it stale when reviewed_on gets old. Update reviewed_on whenever you re-check the sources.",
+  "reviewed_on": "2026-10-19",
+  "sources_checked": ["Mass 50501 events (mass50501.org/events)", "Boston Indivisible calendar (bindivisible.org/calendar)", "No Kings Boston (nokings.boston)", "findaprotest.info (listings load by script and could not be read)", "news coverage"],
+  "events": [
+    {
+      "id": "burlington-ice-vigil", "name": "Bearing Witness @ ICE", "recurrence": "weekly:Wed",
+      "time": "11:00 AM to 1:00 PM", "category": "Vigil / protest", "region": "Burlington, MA",
+      "venue": "1000 District Ave, outside the ICE field office",
+      "attendance": "Small standing vigil, typically a few dozen to a few hundred people. Density well under 2 people per m². Weekly Wednesday schedule confirmed by 2026 reporting.",
+      "rating": "Low", "lat": 42.4885, "lng": -71.2175, "confirmed_on": "2026-10-19"
+    },
+    {
+      "id": "iran-day-of-action", "name": "Day of Action to Stop the War on Iran", "date": "2026-10-20",
+      "time": "8:30 AM to 6:00 PM", "category": "Demonstration / lobby day", "region": "Massachusetts, statewide",
+      "venue": "Congressional offices across Massachusetts",
+      "attendance": "Small groups at each office. Density well under 2 people per m². Not re-confirmed.",
+      "rating": "Low", "lat": null, "lng": null, "confirmed_on": null
+    }
+  ]
+}

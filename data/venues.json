@@ -1,0 +1,60 @@
+{
+  "td-garden": {
+    "name": "TD Garden",
+    "address": "100 Legends Way, Boston, MA 02114",
+    "region": "West End / North Station, Boston",
+    "type": "arena",
+    "seated": false,
+    "aliases": ["td garden"],
+    "tm_keyword": "TD Garden",
+    "tm_venue_id": null,
+    "capacity": {"default": 17500, "concert": 17500, "basketball": 18624, "hockey": 17565},
+    "capacity_label": {"default": "venue capacity", "concert": "venue capacity", "basketball": "official basketball capacity per public sources", "hockey": "official hockey capacity per public sources"},
+    "capacity_note": "Public sources range from about 17,500 to 18,600 for concerts, so treat concert capacity as a rounded estimate.",
+    "density_estimate": "2.0 to 3.0",
+    "lat": null, "lng": null,
+    "fallback_lat": 42.3662, "fallback_lng": -71.0621
+  },
+  "house-of-blues-boston": {
+    "name": "House of Blues Boston",
+    "address": "15 Lansdowne St, Boston, MA 02215",
+    "region": "Fenway, Boston",
+    "type": "mid-size",
+    "seated": false,
+    "aliases": ["house of blues"],
+    "tm_keyword": "House of Blues Boston",
+    "tm_venue_id": null,
+    "capacity": {"default": 1900},
+    "capacity_text": "Capacity per House of Blues capacity breakdown: Music Hall standing/reception about 1,800 to 2,000 (seated theater about 315 to 350). Room for this show not confirmed. Floor area not provided, so exit density is not estimated. Rated Low; confirm the room and times with the venue.",
+    "lat": null, "lng": null,
+    "fallback_lat": 42.3480, "fallback_lng": -71.0966
+  },
+  "shubert-theatre": {
+    "name": "Shubert Theatre",
+    "address": "265 Tremont St, Boston, MA 02116",
+    "region": "Downtown Boston",
+    "type": "theatre",
+    "seated": true,
+    "aliases": ["shubert"],
+    "tm_keyword": "Shubert Theatre",
+    "tm_venue_id": null,
+    "capacity": {"default": 1550},
+    "capacity_text": "Total seating about 1,500 to 1,600 (orchestra, mezzanine, balcony, and box seats). Seated audience, so standing density is not expected. Mezzanine is reached by stairs only, with no elevator, which can slow exits for some attendees. Rated Low; confirm the seating and times with the venue.",
+    "lat": null, "lng": null,
+    "fallback_lat": 42.3512, "fallback_lng": -71.0646
+  },
+  "somerville-theatre": {
+    "name": "Somerville Theatre",
+    "address": "55 Davis Square, Somerville, MA 02144",
+    "region": "Davis Square, Somerville",
+    "type": "theatre",
+    "seated": true,
+    "aliases": ["somerville theatre"],
+    "tm_keyword": "Somerville Theatre",
+    "tm_venue_id": null,
+    "capacity": {"default": 840},
+    "capacity_text": "Main theatre about 840 seats (815 for general admission shows; up to 900 in some listings): orchestra 379, balcony and mezzanine 461. Crystal Ballroom in the same building holds 500 standing or about 230 to 240 at cabaret tables. Room for this show not confirmed. Seated audience, so standing density is not expected. Rated Low; confirm the room and times with the venue.",
+    "lat": null, "lng": null,
+    "fallback_lat": 42.3965, "fallback_lng": -71.1222
+  }
+}

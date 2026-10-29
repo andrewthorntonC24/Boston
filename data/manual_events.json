@@ -1,0 +1,12 @@
+{
+  "_comment": "Events with no API feed. Add entries by hand; they appear in the top-10 table when inside the window.",
+  "events": [
+    {
+      "id": "cycleboat", "name": "Cycleboat Boston harbor cruises", "date_text": "Seasonal<br>(end date not confirmed)",
+      "always_in_window": true, "category": "Seasonal tourism", "region": "Charlestown, Boston Harbor",
+      "venue": "Pier 6, Charlestown Navy Yard",
+      "attendance": "Not published. Each boat seats 12 pedalers plus a bow lounge, so density stays under 2 people per m². Estimate provisional until the operator confirms its schedule.",
+      "rating": "Low", "rank_value": 12, "lat": 42.3723, "lng": -71.0557, "confirmed_on": "2026-10-19"
+    }
+  ]
+}
