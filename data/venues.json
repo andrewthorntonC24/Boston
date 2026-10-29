@@ -5,15 +5,29 @@
     "region": "West End / North Station, Boston",
     "type": "arena",
     "seated": false,
-    "aliases": ["td garden"],
+    "aliases": [
+      "td garden"
+    ],
     "tm_keyword": "TD Garden",
-    "tm_venue_id": null,
-    "capacity": {"default": 17500, "concert": 17500, "basketball": 18624, "hockey": 17565},
-    "capacity_label": {"default": "venue capacity", "concert": "venue capacity", "basketball": "official basketball capacity per public sources", "hockey": "official hockey capacity per public sources"},
+    "tm_venue_id": "KovZpa2gne",
+    "capacity": {
+      "default": 17500,
+      "concert": 17500,
+      "basketball": 18624,
+      "hockey": 17565
+    },
+    "capacity_label": {
+      "default": "venue capacity",
+      "concert": "venue capacity",
+      "basketball": "official basketball capacity per public sources",
+      "hockey": "official hockey capacity per public sources"
+    },
     "capacity_note": "Public sources range from about 17,500 to 18,600 for concerts, so treat concert capacity as a rounded estimate.",
     "density_estimate": "2.0 to 3.0",
-    "lat": null, "lng": null,
-    "fallback_lat": 42.3662, "fallback_lng": -71.0621
+    "lat": 42.365841,
+    "lng": -71.060724,
+    "fallback_lat": 42.3662,
+    "fallback_lng": -71.0621
   },
   "house-of-blues-boston": {
     "name": "House of Blues Boston",
@@ -21,13 +35,20 @@
     "region": "Fenway, Boston",
     "type": "mid-size",
     "seated": false,
-    "aliases": ["house of blues"],
+    "aliases": [
+      "house of blues"
+    ],
     "tm_keyword": "House of Blues Boston",
-    "tm_venue_id": null,
-    "capacity": {"default": 1900},
+    "tm_venue_id": "Za5ju3rKuqZDdxYBp7MNACnQax2mdP6xa5",
+    "capacity": {
+      "default": 1900
+    },
     "capacity_text": "Capacity per House of Blues capacity breakdown: Music Hall standing/reception about 1,800 to 2,000 (seated theater about 315 to 350). Room for this show not confirmed. Floor area not provided, so exit density is not estimated. Rated Low; confirm the room and times with the venue.",
-    "lat": null, "lng": null,
-    "fallback_lat": 42.3480, "fallback_lng": -71.0966
+    "lat": 42.347223804701,
+    "lng": -71.095046759246,
+    "fallback_lat": 42.348,
+    "fallback_lng": -71.0966,
+    "geo_source": "census"
   },
   "shubert-theatre": {
     "name": "Shubert Theatre",
@@ -35,13 +56,19 @@
     "region": "Downtown Boston",
     "type": "theatre",
     "seated": true,
-    "aliases": ["shubert"],
+    "aliases": [
+      "shubert"
+    ],
     "tm_keyword": "Shubert Theatre",
-    "tm_venue_id": null,
-    "capacity": {"default": 1550},
+    "tm_venue_id": "KovZpZA1EEJA",
+    "capacity": {
+      "default": 1550
+    },
     "capacity_text": "Total seating about 1,500 to 1,600 (orchestra, mezzanine, balcony, and box seats). Seated audience, so standing density is not expected. Mezzanine is reached by stairs only, with no elevator, which can slow exits for some attendees. Rated Low; confirm the seating and times with the venue.",
-    "lat": null, "lng": null,
-    "fallback_lat": 42.3512, "fallback_lng": -71.0646
+    "lat": 42.353068,
+    "lng": -71.0765188,
+    "fallback_lat": 42.3512,
+    "fallback_lng": -71.0646
   },
   "somerville-theatre": {
     "name": "Somerville Theatre",
@@ -49,12 +76,18 @@
     "region": "Davis Square, Somerville",
     "type": "theatre",
     "seated": true,
-    "aliases": ["somerville theatre"],
+    "aliases": [
+      "somerville theatre"
+    ],
     "tm_keyword": "Somerville Theatre",
-    "tm_venue_id": null,
-    "capacity": {"default": 840},
+    "tm_venue_id": "KovZpZAaFnJA",
+    "capacity": {
+      "default": 840
+    },
     "capacity_text": "Main theatre about 840 seats (815 for general admission shows; up to 900 in some listings): orchestra 379, balcony and mezzanine 461. Crystal Ballroom in the same building holds 500 standing or about 230 to 240 at cabaret tables. Room for this show not confirmed. Seated audience, so standing density is not expected. Rated Low; confirm the room and times with the venue.",
-    "lat": null, "lng": null,
-    "fallback_lat": 42.3965, "fallback_lng": -71.1222
+    "lat": 42.396753,
+    "lng": -71.122819,
+    "fallback_lat": 42.3965,
+    "fallback_lng": -71.1222
   }
 }
