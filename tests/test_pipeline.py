@@ -23,7 +23,7 @@ def world(tmp_path, monkeypatch):
     monkeypatch.setattr(massdot, "RAW_DIR", data / "raw")
     monkeypatch.setattr(http, "get_json", fw.route_json)
     monkeypatch.setattr(http, "get_text", fw.route_text)
-    monkeypatch.setattr(http, "open_text", fw.open_text)
+    monkeypatch.setattr(http, "iter_lines", fw.iter_lines)
     monkeypatch.setattr(ticketmaster.time, "sleep", lambda s: None)
     for k, v in {"AIRNOW_API_KEY": "k", "TICKETMASTER_API_KEY": "k", "MBTA_API_KEY": "k",
                  "MASSDOT_CWZ_URL": "https://cwz.test/feed", "MASSDOT_CWZ_KEY": "k"}.items():
@@ -71,7 +71,7 @@ def test_massdot_parsers_and_distance_filter():
 
 
 def test_crime_windows_use_complete_days_only():
-    counts = crime.count_by_day(fw.open_text("x"))
+    counts = crime.count_by_day(fw.iter_lines("x"))
     out, end, partial = crime.windows_from_counts(counts, fw.TODAY)
     assert partial is True and end.isoformat() == "2026-10-20"
     assert out["d7"] == {"now": 21, "prev": 21, "label": "Last 7 days"}
@@ -172,3 +172,45 @@ def test_protest_list_is_flagged_stale_when_review_is_old(world):
     (world / "protests.json").write_text(json.dumps(p))
     page = render.render(run_all(world), today=fw.TODAY)
     assert "Stale: last reviewed 20 days ago" in page
+
+
+def test_streaming_download_over_real_http_with_gzip(monkeypatch):
+    """Regression: the live run failed with 'I/O operation on closed file'. This serves a gzipped CSV from a
+    local server and reads it with the real http.iter_lines (nothing patched)."""
+    import gzip
+    import threading
+    from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+    body = gzip.compress(fw.crime_csv().encode())
+
+    class H(BaseHTTPRequestHandler):
+        def log_message(self, *a):
+            pass
+
+        def do_GET(self):
+            self.send_response(200)
+            self.send_header("Content-Type", "text/csv")
+            self.send_header("Content-Encoding", "gzip")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+    srv = ThreadingHTTPServer(("127.0.0.1", 0), H)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    try:
+        counts = crime.count_by_day(http.iter_lines("http://127.0.0.1:%d/crime.csv" % srv.server_address[1]))
+    finally:
+        srv.shutdown()
+    assert sum(counts.values()) == len(fw.crime_csv().splitlines()) - 1
+
+
+def test_rejected_key_message_is_actionable(monkeypatch):
+    class R:
+        status_code = 401
+    monkeypatch.setattr(http._session, "get", lambda *a, **k: R())
+    with pytest.raises(http.SourceError, match="rejected the API key"):
+        http.get_json("https://app.ticketmaster.com/discovery/v2/venues.json", params={"apikey": "secret"})
+
+
+def test_env_strips_pasted_whitespace(monkeypatch):
+    monkeypatch.setenv("TICKETMASTER_API_KEY", "abc123 \n")
+    assert config.env("TICKETMASTER_API_KEY") == "abc123"

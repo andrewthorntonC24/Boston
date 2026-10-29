@@ -28,5 +28,5 @@ USER_AGENT = "BostonTravelRiskDashboard/1.0 (%s)" % (CONTACT_EMAIL or "set CONTA
 
 
 def env(name, default=None):
-    v = os.getenv(name)
-    return v if v not in (None, "") else default
+    v = (os.getenv(name) or "").strip()      # a pasted key often carries a trailing space or newline
+    return v if v else default

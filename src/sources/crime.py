@@ -84,7 +84,7 @@ def fetch(arcgis_url=None, arcgis_field=None, today=None):
         return {"source": "BPD crime service (ArcGIS)", "through": through.isoformat(), **counts, "method": "arcgis"}
     pkg = http.get_json(PACKAGE, params={"id": PACKAGE_ID})["result"]
     res = pick_resource(pkg["resources"])
-    counts = count_by_day(http.open_text(res["url"]))
+    counts = count_by_day(http.iter_lines(res["url"]))
     out, end, partial = windows_from_counts(counts, today)
     return {"source": "Analyze Boston, Crime Incident Reports (%s)" % res.get("name"), "through": end.isoformat(),
             "partial_day_excluded": partial, **out, "method": "ckan-csv"}

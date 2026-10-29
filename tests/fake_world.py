@@ -132,5 +132,5 @@ def route_text(url, params=None, headers=None, timeout=30):
     raise AssertionError(url)
 
 
-def open_text(url, params=None, headers=None, timeout=120):
-    return io.StringIO(crime_csv())
+def iter_lines(url, params=None, headers=None, timeout=120):
+    return iter(crime_csv().splitlines())

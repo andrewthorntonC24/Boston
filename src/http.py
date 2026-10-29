@@ -36,6 +36,9 @@ def _request(url, params=None, headers=None, timeout=30, retries=3, stream=False
             last = "HTTP %s" % r.status_code
             time.sleep(2 ** attempt)
             continue
+        if r.status_code in (401, 403):
+            raise SourceError("HTTP %s from %s (the service rejected the API key: check the secret's name and value, "
+                              "and that it is the key itself with no extra spaces)" % (r.status_code, _clean(url)))
         if r.status_code >= 400:
             raise SourceError("HTTP %s from %s" % (r.status_code, _clean(url)))
         return r
@@ -54,10 +57,16 @@ def get_text(url, params=None, headers=None, timeout=30):
     return _request(url, params, headers, timeout).text
 
 
-def open_text(url, params=None, headers=None, timeout=120):
-    """Open a large text/CSV download as a text stream (used for the crime CSV). Handles gzip and
-    quoted newlines correctly because the csv module reads the stream directly."""
-    import io
+def iter_lines(url, params=None, headers=None, timeout=120):
+    """Stream a large CSV/text download line by line (used for the crime file).
+    This is a generator on purpose: the generator's frame keeps the response object alive until the last
+    line is read. (An earlier version returned a wrapper around response.raw, and the connection was
+    closed before reading finished: "I/O operation on closed file".)"""
     r = _request(url, params, headers, timeout, stream=True)
-    r.raw.decode_content = True
-    return io.TextIOWrapper(r.raw, encoding="utf-8-sig", newline="")
+    r.encoding = "utf-8-sig"          # strips a leading BOM; undecodable bytes are replaced, not fatal
+    try:
+        for line in r.iter_lines(decode_unicode=True):
+            if line:
+                yield line
+    finally:
+        r.close()
