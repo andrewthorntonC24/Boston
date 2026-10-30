@@ -1,99 +1,101 @@
 {
-  "generated_at": "2026-10-30T12:45:00.329158-04:00",
+  "generated_at": "2026-10-30T18:37:46.632848-04:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-10-30T12:45:00.329158-04:00",
+      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-10-30T13:56:20+00:00",
+        "updated": "2026-10-30T20:23:49+00:00",
         "days": [
           {
             "date": "2026-10-30",
             "dow": "Fri",
-            "high": 69,
-            "low": 42,
-            "desc": "Sunny",
+            "high": null,
+            "low": 40,
+            "desc": "Clear",
             "precip": 0,
-            "wind": "W 9 to 13 mph"
+            "wind": null
           },
           {
             "date": "2026-10-31",
             "dow": "Sat",
-            "high": 56,
-            "low": 34,
+            "high": 54,
+            "low": 33,
             "desc": "Sunny",
             "precip": 0,
-            "wind": "NW 3 to 10 mph"
+            "wind": "NW 7 to 13 mph"
           },
           {
             "date": "2026-11-01",
             "dow": "Sun",
-            "high": 61,
+            "high": 59,
             "low": 43,
             "desc": "Sunny",
             "precip": 0,
-            "wind": "W 6 mph"
+            "wind": "W 3 to 7 mph"
           },
           {
             "date": "2026-11-02",
             "dow": "Mon",
             "high": 67,
-            "low": 49,
-            "desc": "Mostly Sunny",
+            "low": 48,
+            "desc": "Sunny",
             "precip": 0,
             "wind": "SW 6 to 9 mph"
           },
           {
             "date": "2026-11-03",
             "dow": "Tue",
-            "high": 64,
+            "high": 65,
             "low": 49,
-            "desc": "Partly Sunny",
-            "precip": 9,
-            "wind": "NE 3 to 9 mph"
+            "desc": "Mostly Sunny",
+            "precip": 5,
+            "wind": "NE 6 mph"
           },
           {
             "date": "2026-11-04",
             "dow": "Wed",
-            "high": 62,
+            "high": 65,
             "low": 52,
             "desc": "Partly Sunny",
-            "precip": 9,
-            "wind": "SE 5 to 9 mph"
+            "precip": 10,
+            "wind": "S 5 to 8 mph"
           },
           {
             "date": "2026-11-05",
             "dow": "Thu",
             "high": 66,
-            "low": 55,
+            "low": 56,
             "desc": "Chance Rain Showers",
-            "precip": 40,
-            "wind": "SE 7 to 12 mph"
+            "precip": 25,
+            "wind": "S 5 to 9 mph"
+          },
+          {
+            "date": "2026-11-06",
+            "dow": "Fri",
+            "high": 64,
+            "low": null,
+            "desc": "Rain Showers Likely",
+            "precip": 67,
+            "wind": "SE 8 to 12 mph"
           }
         ],
-        "alerts": [
-          {
-            "event": "Special Weather Statement",
-            "severity": "Moderate",
-            "headline": "Special Weather Statement issued October 29 at 2:47PM EDT by NWS Boston/Norton MA",
-            "ends": "2026-10-30T18:15:00-04:00"
-          }
-        ]
+        "alerts": []
       }
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-10-30T12:45:00.329158-04:00",
+      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 56,
-        "category": "Moderate",
+        "aqi": 28,
+        "category": "Good",
         "pollutant": "PM2.5",
         "area": "Boston Metro",
-        "observed": "2026-10-30 12:00",
-        "guidance": "Air quality is acceptable. Unusually sensitive people should consider limiting prolonged outdoor exertion.",
+        "observed": "2026-10-30 18:00",
+        "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
           {
             "date": "2026-10-30",
@@ -136,7 +138,7 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-10-30T12:45:00.329158-04:00",
+      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
@@ -192,7 +194,7 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-10-30T12:45:00.329158-04:00",
+      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
@@ -230,27 +232,27 @@
             "end_fmt": null
           },
           {
-            "id": "evt--2",
+            "id": "evt--1",
             "type": "Incident",
-            "road": "RT-140 NB Exit Exit 40",
-            "direction": "NB",
+            "road": "I-95 SB Exit X 76",
+            "direction": "SB",
             "desc": "Traffic Incidents",
             "start": null,
             "end": null,
-            "lat": 42.07371323581241,
-            "lng": -71.25935584112146,
+            "lat": 42.692669745925826,
+            "lng": -70.97130013233652,
             "source": "MassDOT roadway events",
-            "dist_mi": 22.3,
+            "dist_mi": 23.4,
             "boston": false,
             "start_fmt": null,
             "end_fmt": null
           },
           {
-            "id": "evt--1",
-            "type": "Incident",
-            "road": "US-3 NB Exit X 81 C",
-            "direction": "NB",
-            "desc": "Traffic Incidents",
+            "id": "evt--2",
+            "type": "Construction",
+            "road": "Exit",
+            "direction": "",
+            "desc": "Special Event",
             "start": null,
             "end": null,
             "lat": null,
@@ -266,24 +268,24 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-10-30T12:45:00.329158-04:00",
+      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
-        "through": "2026-10-27",
+        "through": "2026-10-28",
         "partial_day_excluded": false,
         "d7": {
-          "now": 1267,
-          "prev": 1485,
+          "now": 1289,
+          "prev": 1506,
           "label": "Last 7 days"
         },
         "d30": {
-          "now": 6479,
-          "prev": 7274,
+          "now": 6537,
+          "prev": 7161,
           "label": "Last 30 days"
         },
         "d365": {
-          "now": 83150,
-          "prev": 81551,
+          "now": 83160,
+          "prev": 81604,
           "label": "Last 365 days"
         },
         "method": "ckan-csv"
@@ -291,7 +293,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-10-30T12:45:00.329158-04:00",
+      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
@@ -564,7 +566,7 @@
             ]
           }
         ],
-        "total_in_window": 159,
+        "total_in_window": 157,
         "geo_sources": {
           "td-garden": null,
           "house-of-blues-boston": "census",
