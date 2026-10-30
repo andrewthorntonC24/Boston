@@ -1,45 +1,36 @@
 {
-  "generated_at": "2026-10-30T00:44:40.456070-04:00",
+  "generated_at": "2026-10-30T06:44:43.961706-04:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
+      "fetched_at": "2026-10-30T06:44:43.961706-04:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-10-29T18:28:49+00:00",
+        "updated": "2026-10-30T05:28:11+00:00",
         "days": [
-          {
-            "date": "2026-10-29",
-            "dow": "Thu",
-            "high": null,
-            "low": 54,
-            "desc": "Partly Cloudy",
-            "precip": 2,
-            "wind": null
-          },
           {
             "date": "2026-10-30",
             "dow": "Fri",
-            "high": 66,
+            "high": 69,
             "low": 42,
-            "desc": "Sunny",
-            "precip": 2,
-            "wind": "W 7 to 15 mph"
+            "desc": "Mostly Sunny",
+            "precip": 0,
+            "wind": "W 6 to 13 mph"
           },
           {
             "date": "2026-10-31",
             "dow": "Sat",
-            "high": 55,
-            "low": 35,
+            "high": 56,
+            "low": 34,
             "desc": "Sunny",
             "precip": 0,
-            "wind": "NW 5 to 13 mph"
+            "wind": "NW 3 to 10 mph"
           },
           {
             "date": "2026-11-01",
             "dow": "Sun",
-            "high": 60,
+            "high": 61,
             "low": 43,
             "desc": "Sunny",
             "precip": 0,
@@ -48,38 +39,38 @@
           {
             "date": "2026-11-02",
             "dow": "Mon",
-            "high": 66,
-            "low": 49,
+            "high": 67,
+            "low": 48,
             "desc": "Mostly Sunny",
-            "precip": 1,
-            "wind": "SW 9 mph"
+            "precip": 0,
+            "wind": "SW 6 to 9 mph"
           },
           {
             "date": "2026-11-03",
             "dow": "Tue",
-            "high": 62,
-            "low": 49,
-            "desc": "Mostly Sunny",
+            "high": 64,
+            "low": 48,
+            "desc": "Partly Sunny",
             "precip": 9,
-            "wind": "NE 5 to 8 mph"
+            "wind": "NE 3 to 8 mph"
           },
           {
             "date": "2026-11-04",
             "dow": "Wed",
-            "high": 62,
-            "low": 50,
+            "high": 65,
+            "low": 51,
             "desc": "Partly Sunny",
-            "precip": 14,
-            "wind": "SE 8 mph"
+            "precip": 9,
+            "wind": "SE 3 to 8 mph"
           },
           {
             "date": "2026-11-05",
             "dow": "Thu",
-            "high": 66,
-            "low": null,
-            "desc": "Chance Rain Showers then Chance Light Rain",
-            "precip": 32,
-            "wind": "S 6 to 12 mph"
+            "high": 67,
+            "low": 54,
+            "desc": "Chance Rain Showers",
+            "precip": 40,
+            "wind": "SE 6 to 10 mph"
           }
         ],
         "alerts": [
@@ -94,23 +85,16 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
+      "fetched_at": "2026-10-30T06:44:43.961706-04:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 31,
-        "category": "Good",
-        "pollutant": "O3",
+        "aqi": 52,
+        "category": "Moderate",
+        "pollutant": "PM2.5",
         "area": "Boston Metro",
-        "observed": "2026-10-30 0:00",
-        "guidance": "Air quality is satisfactory and poses little or no risk.",
+        "observed": "2026-10-30 6:00",
+        "guidance": "Air quality is acceptable. Unusually sensitive people should consider limiting prolonged outdoor exertion.",
         "forecast": [
-          {
-            "date": "2026-10-29",
-            "aqi": 50,
-            "category": "Good",
-            "agency": "Massachusetts Dept. of Environmental Protection",
-            "pollutant": "PM2.5"
-          },
           {
             "date": "2026-10-30",
             "aqi": 50,
@@ -131,24 +115,13 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
+      "fetched_at": "2026-10-30T06:44:43.961706-04:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
         "min_severity": 5,
-        "total_matching": 5,
+        "total_matching": 4,
         "alerts": [
-          {
-            "id": "1042144",
-            "header": "Blue Line: Shuttle buses are replacing service between Wonderland and Orient Heights due to a power problem at Wonderland. ",
-            "effect": "SHUTTLE",
-            "severity": 8,
-            "lifecycle": "NEW",
-            "routes": [
-              "Blue"
-            ],
-            "updated": "2026-10-29T21:43:31-04:00"
-          },
           {
             "id": "1033847",
             "header": "Green Line C Branch:  Trains are skipping Hawes St outbound through Nov 7 while accessibility upgrades are being done. Riders can board/alight one stop away at either Saint Mary’s St or Kent St, which are 0.2-0.3 miles away (about a 4 - 6 minute walk)",
@@ -198,29 +171,29 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
+      "fetched_at": "2026-10-30T06:44:43.961706-04:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
         "items": [
           {
-            "id": "evt--0",
+            "id": "evt--2",
             "type": "Incident",
-            "road": "I-93 NB Exit 15B",
-            "direction": "NB",
+            "road": "Chelsea Street Bridge NB and SB Exit",
+            "direction": "NB and SB",
             "desc": "Traffic Incidents",
             "start": null,
             "end": null,
-            "lat": 42.333756468722875,
-            "lng": -71.06365643929546,
+            "lat": 42.3862987,
+            "lng": -71.0227204,
             "source": "MassDOT roadway events",
-            "dist_mi": 1.8,
+            "dist_mi": 2.6,
             "boston": true,
             "start_fmt": null,
             "end_fmt": null
           },
           {
-            "id": "evt--2",
+            "id": "evt--4",
             "type": "Incident",
             "road": "Fore River Bridge (3A) NB and SB Exit",
             "direction": "NB and SB",
@@ -236,7 +209,7 @@
             "end_fmt": null
           },
           {
-            "id": "evt--3",
+            "id": "evt--5",
             "type": "Incident",
             "road": "Fore River Bridge (3A) NB and SB Exit",
             "direction": "NB and SB",
@@ -253,6 +226,38 @@
           },
           {
             "id": "evt--1",
+            "type": "Incident",
+            "road": "I-90 EB Exit EX 117",
+            "direction": "EB",
+            "desc": "Traffic Incidents",
+            "start": null,
+            "end": null,
+            "lat": 42.3116,
+            "lng": -71.3772,
+            "source": "MassDOT roadway events",
+            "dist_mi": 16.6,
+            "boston": false,
+            "start_fmt": null,
+            "end_fmt": null
+          },
+          {
+            "id": "evt--0",
+            "type": "Incident",
+            "road": "I-90 EB Exit 112.8",
+            "direction": "EB",
+            "desc": "Traffic Incidents",
+            "start": null,
+            "end": null,
+            "lat": 42.31330059189297,
+            "lng": -71.38621468353286,
+            "source": "MassDOT roadway events",
+            "dist_mi": 17.0,
+            "boston": false,
+            "start_fmt": null,
+            "end_fmt": null
+          },
+          {
+            "id": "evt--3",
             "type": "Incident",
             "road": "RT-140 NB Exit Exit 40",
             "direction": "NB",
@@ -272,7 +277,7 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
+      "fetched_at": "2026-10-30T06:44:43.961706-04:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
         "through": "2026-10-27",
@@ -297,7 +302,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
+      "fetched_at": "2026-10-30T06:44:43.961706-04:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
