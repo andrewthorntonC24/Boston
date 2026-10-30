@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-10-29T14:59:49.146190-04:00",
+  "generated_at": "2026-10-30T00:44:40.456070-04:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-10-29T14:59:49.146190-04:00",
+      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-10-29T18:04:52+00:00",
+        "updated": "2026-10-29T18:28:49+00:00",
         "days": [
           {
             "date": "2026-10-29",
             "dow": "Thu",
-            "high": 67,
+            "high": null,
             "low": 54,
-            "desc": "Sunny",
-            "precip": 0,
-            "wind": "SW 12 mph"
+            "desc": "Partly Cloudy",
+            "precip": 2,
+            "wind": null
           },
           {
             "date": "2026-10-30",
@@ -40,7 +40,7 @@
             "date": "2026-11-01",
             "dow": "Sun",
             "high": 60,
-            "low": 42,
+            "low": 43,
             "desc": "Sunny",
             "precip": 0,
             "wind": "W 6 mph"
@@ -48,29 +48,38 @@
           {
             "date": "2026-11-02",
             "dow": "Mon",
-            "high": 67,
-            "low": 48,
+            "high": 66,
+            "low": 49,
             "desc": "Mostly Sunny",
             "precip": 1,
-            "wind": "SW 6 to 9 mph"
+            "wind": "SW 9 mph"
           },
           {
             "date": "2026-11-03",
             "dow": "Tue",
-            "high": 64,
+            "high": 62,
             "low": 49,
             "desc": "Mostly Sunny",
-            "precip": 7,
-            "wind": "NE 3 to 8 mph"
+            "precip": 9,
+            "wind": "NE 5 to 8 mph"
           },
           {
             "date": "2026-11-04",
             "dow": "Wed",
-            "high": 65,
-            "low": 52,
+            "high": 62,
+            "low": 50,
             "desc": "Partly Sunny",
             "precip": 14,
-            "wind": "SE 5 to 8 mph"
+            "wind": "SE 8 mph"
+          },
+          {
+            "date": "2026-11-05",
+            "dow": "Thu",
+            "high": 66,
+            "low": null,
+            "desc": "Chance Rain Showers then Chance Light Rain",
+            "precip": 32,
+            "wind": "S 6 to 12 mph"
           }
         ],
         "alerts": [
@@ -85,14 +94,14 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-10-29T14:59:49.146190-04:00",
+      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
       "data": {
         "source": "AirNow (EPA)",
         "aqi": 31,
         "category": "Good",
-        "pollutant": "PM2.5",
+        "pollutant": "O3",
         "area": "Boston Metro",
-        "observed": "2026-10-29 14:00",
+        "observed": "2026-10-30 0:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
           {
@@ -122,13 +131,24 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-10-29T14:59:49.146190-04:00",
+      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
         "min_severity": 5,
-        "total_matching": 4,
+        "total_matching": 5,
         "alerts": [
+          {
+            "id": "1042144",
+            "header": "Blue Line: Shuttle buses are replacing service between Wonderland and Orient Heights due to a power problem at Wonderland. ",
+            "effect": "SHUTTLE",
+            "severity": 8,
+            "lifecycle": "NEW",
+            "routes": [
+              "Blue"
+            ],
+            "updated": "2026-10-29T21:43:31-04:00"
+          },
           {
             "id": "1033847",
             "header": "Green Line C Branch:  Trains are skipping Hawes St outbound through Nov 7 while accessibility upgrades are being done. Riders can board/alight one stop away at either Saint Mary’s St or Kent St, which are 0.2-0.3 miles away (about a 4 - 6 minute walk)",
@@ -178,23 +198,23 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-10-29T14:59:49.146190-04:00",
+      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
         "items": [
           {
-            "id": "evt--1",
+            "id": "evt--0",
             "type": "Incident",
-            "road": "Fore River Bridge (3A) NB and SB Exit",
-            "direction": "NB and SB",
+            "road": "I-93 NB Exit 15B",
+            "direction": "NB",
             "desc": "Traffic Incidents",
             "start": null,
             "end": null,
-            "lat": 42.2446,
-            "lng": -70.9673,
+            "lat": 42.333756468722875,
+            "lng": -71.06365643929546,
             "source": "MassDOT roadway events",
-            "dist_mi": 9.3,
+            "dist_mi": 1.8,
             "boston": true,
             "start_fmt": null,
             "end_fmt": null
@@ -214,13 +234,45 @@
             "boston": true,
             "start_fmt": null,
             "end_fmt": null
+          },
+          {
+            "id": "evt--3",
+            "type": "Incident",
+            "road": "Fore River Bridge (3A) NB and SB Exit",
+            "direction": "NB and SB",
+            "desc": "Traffic Incidents",
+            "start": null,
+            "end": null,
+            "lat": 42.2446,
+            "lng": -70.9673,
+            "source": "MassDOT roadway events",
+            "dist_mi": 9.3,
+            "boston": true,
+            "start_fmt": null,
+            "end_fmt": null
+          },
+          {
+            "id": "evt--1",
+            "type": "Incident",
+            "road": "RT-140 NB Exit Exit 40",
+            "direction": "NB",
+            "desc": "Traffic Incidents",
+            "start": null,
+            "end": null,
+            "lat": 42.07371323581241,
+            "lng": -71.25935584112146,
+            "source": "MassDOT roadway events",
+            "dist_mi": 22.3,
+            "boston": false,
+            "start_fmt": null,
+            "end_fmt": null
           }
         ]
       }
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-10-29T14:59:49.146190-04:00",
+      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
         "through": "2026-10-27",
@@ -245,7 +297,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-10-29T14:59:49.146190-04:00",
+      "fetched_at": "2026-10-30T00:44:40.456070-04:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
@@ -286,6 +338,24 @@
             "url": "https://www.ticketmaster.com/boston-celtics-vs-milwaukee-bucks-boston-massachusetts-11-04-2026/event/0100650C94709436"
           },
           {
+            "name": "TNT Sports Hall of Fame Boston, Presented by Amica Insurance",
+            "date": "2026-11-06",
+            "time": "16:00:00",
+            "date_text": "Fri, Nov 6<br>4:00 PM",
+            "category": "Basketball (NBA)",
+            "region": "West End / North Station, Boston",
+            "venue": "TD Garden",
+            "address": "100 Legends Way, Boston, MA 02114",
+            "venue_slug": "td-garden",
+            "attendance": "About 18,624 (official basketball capacity per public sources). Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan.",
+            "rating": "Medium",
+            "rank": 18624,
+            "lat": 42.365841,
+            "lng": -71.060724,
+            "source": "Ticketmaster",
+            "url": "https://www.ticketmaster.com/tnt-sports-hall-of-fame-boston-boston-massachusetts-11-06-2026/event/010064ADE815D824"
+          },
+          {
             "name": "Boston Bruins vs. Chicago Blackhawks",
             "date": "2026-10-31",
             "time": "13:00:00",
@@ -320,24 +390,6 @@
             "lng": -71.060724,
             "source": "Ticketmaster",
             "url": "https://www.ticketmaster.com/boston-bruins-vs-vegas-golden-knights-boston-massachusetts-11-02-2026/event/010064EDC5097A28"
-          },
-          {
-            "name": "JOHN SUMMIT - CTRL ESCAPE ARENA TOUR",
-            "date": "2026-10-29",
-            "time": "19:00:00",
-            "date_text": "Thu, Oct 29<br>7:00 PM",
-            "category": "Concert (Dance/Electronic)",
-            "region": "West End / North Station, Boston",
-            "venue": "TD Garden",
-            "address": "100 Legends Way, Boston, MA 02114",
-            "venue_slug": "td-garden",
-            "attendance": "About 17,500 (venue capacity). Public sources range from about 17,500 to 18,600 for concerts, so treat concert capacity as a rounded estimate. Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan.",
-            "rating": "Medium",
-            "rank": 17500,
-            "lat": 42.365841,
-            "lng": -71.060724,
-            "source": "Ticketmaster",
-            "url": "https://www.ticketmaster.com/john-summit-ctrl-escape-arena-tour-boston-massachusetts-10-29-2026/event/010064B2AC06B8C3"
           },
           {
             "name": "Disney Descendants, ZOMBIES & Camp Rock: Worlds Collide Concert Tour",
@@ -438,13 +490,6 @@
             "lng": -71.060724,
             "events": [
               {
-                "name": "JOHN SUMMIT - CTRL ESCAPE ARENA TOUR",
-                "when": "Thu, Oct 29, 7:00 PM",
-                "category": "Concert (Dance/Electronic)",
-                "rating": "Medium",
-                "note": "About 17,500 (venue capacity). Public sources range from about 17,500 to 18,600 for concerts, so treat concert capacity as a rounded estimate. Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan."
-              },
-              {
                 "name": "Boston Celtics vs. Chicago Bulls",
                 "when": "Fri, Oct 30, 7:30 PM",
                 "category": "Basketball (NBA)",
@@ -475,6 +520,13 @@
               {
                 "name": "Boston Celtics vs. Milwaukee Bucks",
                 "when": "Wed, Nov 4, 7:30 PM",
+                "category": "Basketball (NBA)",
+                "rating": "Medium",
+                "note": "About 18,624 (official basketball capacity per public sources). Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan."
+              },
+              {
+                "name": "TNT Sports Hall of Fame Boston, Presented by Amica Insurance",
+                "when": "Fri, Nov 6, 4:00 PM",
                 "category": "Basketball (NBA)",
                 "rating": "Medium",
                 "note": "About 18,624 (official basketball capacity per public sources). Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan."
@@ -518,7 +570,7 @@
             ]
           }
         ],
-        "total_in_window": 142,
+        "total_in_window": 158,
         "geo_sources": {
           "td-garden": null,
           "house-of-blues-boston": "census",
