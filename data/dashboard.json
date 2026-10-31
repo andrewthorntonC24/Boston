@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-30T18:37:46.632848-04:00",
+  "generated_at": "2026-10-31T00:41:09.708311-04:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
+      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
@@ -87,14 +87,14 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
+      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 28,
+        "aqi": 18,
         "category": "Good",
         "pollutant": "PM2.5",
         "area": "Boston Metro",
-        "observed": "2026-10-30 18:00",
+        "observed": "2026-10-31 0:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
           {
@@ -138,7 +138,7 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
+      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
@@ -194,7 +194,7 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
+      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
@@ -232,17 +232,33 @@
             "end_fmt": null
           },
           {
+            "id": "evt--0",
+            "type": "Incident",
+            "road": "US-1 NB Exit Noria Gas Station",
+            "direction": "NB",
+            "desc": "Traffic Incidents",
+            "start": null,
+            "end": null,
+            "lat": 42.505149707069954,
+            "lng": -71.01393032073976,
+            "source": "MassDOT roadway events",
+            "dist_mi": 10.3,
+            "boston": true,
+            "start_fmt": null,
+            "end_fmt": null
+          },
+          {
             "id": "evt--1",
             "type": "Incident",
-            "road": "I-95 SB Exit X 76",
+            "road": "US-1 SB Exit Industrial Ave",
             "direction": "SB",
             "desc": "Traffic Incidents",
             "start": null,
             "end": null,
-            "lat": 42.692669745925826,
-            "lng": -70.97130013233652,
+            "lat": null,
+            "lng": null,
             "source": "MassDOT roadway events",
-            "dist_mi": 23.4,
+            "dist_mi": null,
             "boston": false,
             "start_fmt": null,
             "end_fmt": null
@@ -268,7 +284,7 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
+      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
         "through": "2026-10-28",
@@ -293,28 +309,10 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-10-30T18:37:46.632848-04:00",
+      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
-          {
-            "name": "Boston Celtics vs. Chicago Bulls",
-            "date": "2026-10-30",
-            "time": "19:30:00",
-            "date_text": "Fri, Oct 30<br>7:30 PM",
-            "category": "Basketball (NBA)",
-            "region": "West End / North Station, Boston",
-            "venue": "TD Garden",
-            "address": "100 Legends Way, Boston, MA 02114",
-            "venue_slug": "td-garden",
-            "attendance": "About 18,624 (official basketball capacity per public sources). Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan.",
-            "rating": "Medium",
-            "rank": 18624,
-            "lat": 42.365841,
-            "lng": -71.060724,
-            "source": "Ticketmaster",
-            "url": "https://www.ticketmaster.com/boston-celtics-vs-chicago-bulls-boston-massachusetts-10-30-2026/event/0100650C946B9414"
-          },
           {
             "name": "Boston Celtics vs. Milwaukee Bucks",
             "date": "2026-11-04",
@@ -406,22 +404,22 @@
             "url": "https://www.ticketmaster.com/disney-descendants-zombies-camp-rock-worlds-boston-massachusetts-11-03-2026/event/010064660E8EB40C"
           },
           {
-            "name": "Punchis Punchis: Banda Rave Experience (18+)",
-            "date": "2026-10-30",
+            "name": "Comics Come Home",
+            "date": "2026-11-07",
             "time": "20:00:00",
-            "date_text": "Fri, Oct 30<br>8:00 PM",
-            "category": "Concert (Latin)",
-            "region": "Fenway, Boston",
-            "venue": "House of Blues Boston",
-            "address": "15 Lansdowne St, Boston, MA 02215",
-            "venue_slug": "house-of-blues-boston",
-            "attendance": "Capacity per House of Blues capacity breakdown: Music Hall standing/reception about 1,800 to 2,000 (seated theater about 315 to 350). Room for this show not confirmed. Floor area not provided, so exit density is not estimated. Rated Low; confirm the room and times with the venue.",
-            "rating": "Low",
-            "rank": 1900,
-            "lat": 42.3471841,
-            "lng": -71.0957036,
+            "date_text": "Sat, Nov 7<br>8:00 PM",
+            "category": "Arts & Theatre",
+            "region": "West End / North Station, Boston",
+            "venue": "TD Garden",
+            "address": "100 Legends Way, Boston, MA 02114",
+            "venue_slug": "td-garden",
+            "attendance": "About 17,500 (venue capacity). Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan.",
+            "rating": "Medium",
+            "rank": 17500,
+            "lat": 42.365841,
+            "lng": -71.060724,
             "source": "Ticketmaster",
-            "url": "https://www.ticketmaster.com/punchis-punchis-banda-rave-experience-18-boston-massachusetts-10-30-2026/event/0100651C01694258"
+            "url": "https://www.ticketmaster.com/comics-come-home-boston-massachusetts-11-07-2026/event/010064D0A4D3D305"
           },
           {
             "name": "LIL PEEP 30TH BIRTHDAY CELEBRATION",
@@ -476,6 +474,24 @@
             "lng": -71.0957036,
             "source": "Ticketmaster",
             "url": "https://www.ticketmaster.com/the-amity-affliction-house-of-cards-boston-massachusetts-11-04-2026/event/010064E79FA0B8A2"
+          },
+          {
+            "name": "Palace - USA & Canada Tour 2026",
+            "date": "2026-11-05",
+            "time": "19:00:00",
+            "date_text": "Thu, Nov 5<br>7:00 PM",
+            "category": "Concert (Rock)",
+            "region": "Fenway, Boston",
+            "venue": "House of Blues Boston",
+            "address": "15 Lansdowne St, Boston, MA 02215",
+            "venue_slug": "house-of-blues-boston",
+            "attendance": "Capacity per House of Blues capacity breakdown: Music Hall standing/reception about 1,800 to 2,000 (seated theater about 315 to 350). Room for this show not confirmed. Floor area not provided, so exit density is not estimated. Rated Low; confirm the room and times with the venue.",
+            "rating": "Low",
+            "rank": 1900,
+            "lat": 42.3471841,
+            "lng": -71.0957036,
+            "source": "Ticketmaster",
+            "url": "https://www.ticketmaster.com/palace-usa-canada-tour-2026-boston-massachusetts-11-05-2026/event/0100648FE017E9D0"
           }
         ],
         "pins": [
@@ -485,13 +501,6 @@
             "lat": 42.365841,
             "lng": -71.060724,
             "events": [
-              {
-                "name": "Boston Celtics vs. Chicago Bulls",
-                "when": "Fri, Oct 30, 7:30 PM",
-                "category": "Basketball (NBA)",
-                "rating": "Medium",
-                "note": "About 18,624 (official basketball capacity per public sources). Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan."
-              },
               {
                 "name": "Boston Bruins vs. Chicago Blackhawks",
                 "when": "Sat, Oct 31, 1:00 PM",
@@ -526,6 +535,13 @@
                 "category": "Basketball (NBA)",
                 "rating": "Medium",
                 "note": "About 18,624 (official basketball capacity per public sources). Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan."
+              },
+              {
+                "name": "Comics Come Home",
+                "when": "Sat, Nov 7, 8:00 PM",
+                "category": "Arts & Theatre",
+                "rating": "Medium",
+                "note": "About 17,500 (venue capacity). Exit-zone density estimated at 2.0 to 3.0 people per m² as the crowd exits through a few gates within about an hour. Provisional until the venue confirms its exit plan."
               }
             ]
           },
@@ -535,13 +551,6 @@
             "lat": 42.347223804701,
             "lng": -71.095046759246,
             "events": [
-              {
-                "name": "Punchis Punchis: Banda Rave Experience (18+)",
-                "when": "Fri, Oct 30, 8:00 PM",
-                "category": "Concert (Latin)",
-                "rating": "Low",
-                "note": "Capacity per House of Blues capacity breakdown: Music Hall standing/reception about 1,800 to 2,000 (seated theater about 315 to 350). Room for this show not confirmed. Floor area not provided, so exit density is not estimated. Rated Low; confirm the room and times with the venue."
-              },
               {
                 "name": "LIL PEEP 30TH BIRTHDAY CELEBRATION",
                 "when": "Sat, Oct 31, 7:00 PM",
@@ -562,11 +571,18 @@
                 "category": "Concert (Metal)",
                 "rating": "Low",
                 "note": "Capacity per House of Blues capacity breakdown: Music Hall standing/reception about 1,800 to 2,000 (seated theater about 315 to 350). Room for this show not confirmed. Floor area not provided, so exit density is not estimated. Rated Low; confirm the room and times with the venue."
+              },
+              {
+                "name": "Palace - USA & Canada Tour 2026",
+                "when": "Thu, Nov 5, 7:00 PM",
+                "category": "Concert (Rock)",
+                "rating": "Low",
+                "note": "Capacity per House of Blues capacity breakdown: Music Hall standing/reception about 1,800 to 2,000 (seated theater about 315 to 350). Room for this show not confirmed. Floor area not provided, so exit density is not estimated. Rated Low; confirm the room and times with the venue."
               }
             ]
           }
         ],
-        "total_in_window": 157,
+        "total_in_window": 163,
         "geo_sources": {
           "td-garden": null,
           "house-of-blues-boston": "census",
