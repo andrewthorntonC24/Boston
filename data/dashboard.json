@@ -1,40 +1,40 @@
 {
-  "generated_at": "2026-10-31T12:35:30.076369-04:00",
+  "generated_at": "2026-10-31T18:33:22.777901-04:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
+      "fetched_at": "2026-10-31T18:33:22.777901-04:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-10-31T10:39:33+00:00",
+        "updated": "2026-10-31T19:56:47+00:00",
         "days": [
           {
             "date": "2026-10-31",
             "dow": "Sat",
-            "high": 55,
-            "low": 38,
-            "desc": "Sunny",
+            "high": null,
+            "low": 34,
+            "desc": "Clear",
             "precip": 0,
-            "wind": "NW 9 to 15 mph"
+            "wind": null
           },
           {
             "date": "2026-11-01",
             "dow": "Sun",
-            "high": 60,
-            "low": 46,
+            "high": 59,
+            "low": 45,
             "desc": "Sunny",
             "precip": 0,
-            "wind": "W 5 to 9 mph"
+            "wind": "W 3 to 7 mph"
           },
           {
             "date": "2026-11-02",
             "dow": "Mon",
-            "high": 68,
-            "low": 47,
+            "high": 70,
+            "low": 48,
             "desc": "Sunny",
             "precip": 0,
-            "wind": "SW 8 mph"
+            "wind": "SW 6 to 9 mph"
           },
           {
             "date": "2026-11-03",
@@ -42,17 +42,17 @@
             "high": 66,
             "low": 51,
             "desc": "Mostly Sunny",
-            "precip": 2,
+            "precip": 0,
             "wind": "S 3 to 7 mph"
           },
           {
             "date": "2026-11-04",
             "dow": "Wed",
-            "high": 68,
-            "low": 54,
-            "desc": "Partly Sunny",
-            "precip": 9,
-            "wind": "S 5 to 10 mph"
+            "high": 67,
+            "low": 55,
+            "desc": "Mostly Sunny",
+            "precip": 3,
+            "wind": "SW 6 to 9 mph"
           },
           {
             "date": "2026-11-05",
@@ -60,17 +60,26 @@
             "high": 68,
             "low": 56,
             "desc": "Chance Rain Showers",
-            "precip": 32,
-            "wind": "S 6 to 10 mph"
+            "precip": 26,
+            "wind": "S 7 to 10 mph"
           },
           {
             "date": "2026-11-06",
             "dow": "Fri",
             "high": 65,
-            "low": 52,
-            "desc": "Showers And Thunderstorms Likely",
-            "precip": 61,
-            "wind": "S 6 to 9 mph"
+            "low": 51,
+            "desc": "Chance Rain Showers",
+            "precip": 54,
+            "wind": "SE 7 to 12 mph"
+          },
+          {
+            "date": "2026-11-07",
+            "dow": "Sat",
+            "high": 59,
+            "low": null,
+            "desc": "Chance Rain Showers then Chance Light Rain",
+            "precip": 52,
+            "wind": "NE 10 to 14 mph"
           }
         ],
         "alerts": []
@@ -78,14 +87,14 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
+      "fetched_at": "2026-10-31T18:33:22.777901-04:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 27,
+        "aqi": 21,
         "category": "Good",
-        "pollutant": "O3",
+        "pollutant": "PM2.5",
         "area": "Boston Metro",
-        "observed": "2026-10-31 12:00",
+        "observed": "2026-10-31 18:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
           {
@@ -122,12 +131,12 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
+      "fetched_at": "2026-10-31T18:33:22.777901-04:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
         "min_severity": 5,
-        "total_matching": 4,
+        "total_matching": 5,
         "alerts": [
           {
             "id": "1033847",
@@ -175,19 +184,30 @@
               "Green-E"
             ],
             "updated": "2026-10-28T19:01:15-04:00"
+          },
+          {
+            "id": "1042538",
+            "header": "Red Line: Delays of about 25 minutes due to an earlier disabled train at Kendall/MIT. Service is proceeding.",
+            "effect": "DELAY",
+            "severity": 6,
+            "lifecycle": "NEW",
+            "routes": [
+              "Red"
+            ],
+            "updated": "2026-10-31T16:26:24-04:00"
           }
         ]
       }
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
+      "fetched_at": "2026-10-31T18:33:22.777901-04:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
         "items": [
           {
-            "id": "evt--0",
+            "id": "evt--1",
             "type": "Incident",
             "road": "Fore River Bridge (3A) NB and SB Exit",
             "direction": "NB and SB",
@@ -203,7 +223,7 @@
             "end_fmt": null
           },
           {
-            "id": "evt--1",
+            "id": "evt--2",
             "type": "Incident",
             "road": "Fore River Bridge (3A) NB and SB Exit",
             "direction": "NB and SB",
@@ -251,18 +271,18 @@
             "end_fmt": null
           },
           {
-            "id": "evt--2",
-            "type": "Construction",
-            "road": "Exit",
-            "direction": "",
-            "desc": "Special Event",
+            "id": "evt--0",
+            "type": "Incident",
+            "road": "I-93 NB Exit between exits 5-6",
+            "direction": "NB",
+            "desc": "Traffic Incidents",
             "start": null,
             "end": null,
-            "lat": null,
-            "lng": null,
+            "lat": 42.20613193604758,
+            "lng": -71.06062999500894,
             "source": "MassDOT roadway events",
-            "dist_mi": null,
-            "boston": false,
+            "dist_mi": 10.6,
+            "boston": true,
             "start_fmt": null,
             "end_fmt": null
           }
@@ -271,24 +291,24 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
+      "fetched_at": "2026-10-31T18:33:22.777901-04:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
-        "through": "2026-10-28",
+        "through": "2026-10-29",
         "partial_day_excluded": false,
         "d7": {
-          "now": 1289,
-          "prev": 1506,
+          "now": 1285,
+          "prev": 1525,
           "label": "Last 7 days"
         },
         "d30": {
-          "now": 6537,
-          "prev": 7161,
+          "now": 6501,
+          "prev": 7217,
           "label": "Last 30 days"
         },
         "d365": {
-          "now": 83160,
-          "prev": 81604,
+          "now": 83210,
+          "prev": 81578,
           "label": "Last 365 days"
         },
         "method": "ckan-csv"
@@ -296,7 +316,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
+      "fetched_at": "2026-10-31T18:33:22.777901-04:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
