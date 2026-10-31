@@ -1,85 +1,76 @@
 {
-  "generated_at": "2026-10-31T00:41:09.708311-04:00",
+  "generated_at": "2026-10-31T06:34:34.921616-04:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
+      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-10-30T20:23:49+00:00",
+        "updated": "2026-10-31T10:15:39+00:00",
         "days": [
-          {
-            "date": "2026-10-30",
-            "dow": "Fri",
-            "high": null,
-            "low": 40,
-            "desc": "Clear",
-            "precip": 0,
-            "wind": null
-          },
           {
             "date": "2026-10-31",
             "dow": "Sat",
-            "high": 54,
-            "low": 33,
+            "high": 55,
+            "low": 38,
             "desc": "Sunny",
             "precip": 0,
-            "wind": "NW 7 to 13 mph"
+            "wind": "NW 9 to 15 mph"
           },
           {
             "date": "2026-11-01",
             "dow": "Sun",
-            "high": 59,
-            "low": 43,
+            "high": 60,
+            "low": 46,
             "desc": "Sunny",
             "precip": 0,
-            "wind": "W 3 to 7 mph"
+            "wind": "W 5 to 9 mph"
           },
           {
             "date": "2026-11-02",
             "dow": "Mon",
-            "high": 67,
-            "low": 48,
+            "high": 68,
+            "low": 47,
             "desc": "Sunny",
             "precip": 0,
-            "wind": "SW 6 to 9 mph"
+            "wind": "SW 8 mph"
           },
           {
             "date": "2026-11-03",
             "dow": "Tue",
-            "high": 65,
-            "low": 49,
+            "high": 66,
+            "low": 51,
             "desc": "Mostly Sunny",
-            "precip": 5,
-            "wind": "NE 6 mph"
+            "precip": 2,
+            "wind": "S 3 to 7 mph"
           },
           {
             "date": "2026-11-04",
             "dow": "Wed",
-            "high": 65,
-            "low": 52,
+            "high": 68,
+            "low": 54,
             "desc": "Partly Sunny",
-            "precip": 10,
-            "wind": "S 5 to 8 mph"
+            "precip": 9,
+            "wind": "S 5 to 10 mph"
           },
           {
             "date": "2026-11-05",
             "dow": "Thu",
-            "high": 66,
+            "high": 68,
             "low": 56,
             "desc": "Chance Rain Showers",
-            "precip": 25,
-            "wind": "S 5 to 9 mph"
+            "precip": 32,
+            "wind": "S 6 to 10 mph"
           },
           {
             "date": "2026-11-06",
             "dow": "Fri",
-            "high": 64,
-            "low": null,
-            "desc": "Rain Showers Likely",
-            "precip": 67,
-            "wind": "SE 8 to 12 mph"
+            "high": 65,
+            "low": 52,
+            "desc": "Showers And Thunderstorms Likely",
+            "precip": 61,
+            "wind": "S 6 to 9 mph"
           }
         ],
         "alerts": []
@@ -87,23 +78,16 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
+      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 18,
+        "aqi": 15,
         "category": "Good",
-        "pollutant": "PM2.5",
+        "pollutant": "O3",
         "area": "Boston Metro",
-        "observed": "2026-10-31 0:00",
+        "observed": "2026-10-31 6:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
-          {
-            "date": "2026-10-30",
-            "aqi": 50,
-            "category": "Good",
-            "agency": "Massachusetts Dept. of Environmental Protection",
-            "pollutant": "PM2.5"
-          },
           {
             "date": "2026-10-31",
             "aqi": 35,
@@ -138,7 +122,7 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
+      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
@@ -179,26 +163,45 @@
             "updated": "2026-10-19T10:14:58-04:00"
           },
           {
-            "id": "1025806",
-            "header": "Green Line C Branch:  Trains are not stopping at Brandon Hall through October 30 while accessibility upgrades are being done. Riders can board or alight at either Fairbanks St or Summit Ave, which are 0.1-0.2 miles away (or a 4- to 5-minute walk) ",
-            "effect": "STATION_CLOSURE",
+            "id": "1039320",
+            "header": "Green Line: No trains between North Station & Babcock St (B), Kenmore (C+D), & Heath St (E), October 31 - November 1. Use buses between Babcock, Kenmore, Heath St (Rt 39) & Copley/Back Bay. Use Orange Line between North Station & Back Bay.",
+            "effect": "SUSPENSION",
             "severity": 7,
-            "lifecycle": "ONGOING",
+            "lifecycle": "NEW",
             "routes": [
-              "Green-C"
+              "Green-B",
+              "Green-C",
+              "Green-D",
+              "Green-E"
             ],
-            "updated": "2026-10-14T12:01:33-04:00"
+            "updated": "2026-10-28T19:01:15-04:00"
           }
         ]
       }
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
+      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
         "items": [
+          {
+            "id": "evt--1",
+            "type": "Incident",
+            "road": "N/A WB Exit Bowker Bridge Ramp to Storrow Drive WB",
+            "direction": "WB",
+            "desc": "Traffic Incidents",
+            "start": null,
+            "end": null,
+            "lat": 42.35102995919772,
+            "lng": -71.09228837490083,
+            "source": "MassDOT roadway events",
+            "dist_mi": 1.8,
+            "boston": true,
+            "start_fmt": null,
+            "end_fmt": null
+          },
           {
             "id": "evt--3",
             "type": "Incident",
@@ -232,38 +235,6 @@
             "end_fmt": null
           },
           {
-            "id": "evt--0",
-            "type": "Incident",
-            "road": "US-1 NB Exit Noria Gas Station",
-            "direction": "NB",
-            "desc": "Traffic Incidents",
-            "start": null,
-            "end": null,
-            "lat": 42.505149707069954,
-            "lng": -71.01393032073976,
-            "source": "MassDOT roadway events",
-            "dist_mi": 10.3,
-            "boston": true,
-            "start_fmt": null,
-            "end_fmt": null
-          },
-          {
-            "id": "evt--1",
-            "type": "Incident",
-            "road": "US-1 SB Exit Industrial Ave",
-            "direction": "SB",
-            "desc": "Traffic Incidents",
-            "start": null,
-            "end": null,
-            "lat": null,
-            "lng": null,
-            "source": "MassDOT roadway events",
-            "dist_mi": null,
-            "boston": false,
-            "start_fmt": null,
-            "end_fmt": null
-          },
-          {
             "id": "evt--2",
             "type": "Construction",
             "road": "Exit",
@@ -284,7 +255,7 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
+      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
         "through": "2026-10-28",
@@ -309,7 +280,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-10-31T00:41:09.708311-04:00",
+      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
