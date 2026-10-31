@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-10-31T06:34:34.921616-04:00",
+  "generated_at": "2026-10-31T12:35:30.076369-04:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
+      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-10-31T10:15:39+00:00",
+        "updated": "2026-10-31T10:39:33+00:00",
         "days": [
           {
             "date": "2026-10-31",
@@ -78,14 +78,14 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
+      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 15,
+        "aqi": 27,
         "category": "Good",
         "pollutant": "O3",
         "area": "Boston Metro",
-        "observed": "2026-10-31 6:00",
+        "observed": "2026-10-31 12:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
           {
@@ -122,7 +122,7 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
+      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
@@ -181,23 +181,39 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
+      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
         "items": [
           {
-            "id": "evt--1",
+            "id": "evt--0",
             "type": "Incident",
-            "road": "N/A WB Exit Bowker Bridge Ramp to Storrow Drive WB",
-            "direction": "WB",
+            "road": "Fore River Bridge (3A) NB and SB Exit",
+            "direction": "NB and SB",
             "desc": "Traffic Incidents",
             "start": null,
             "end": null,
-            "lat": 42.35102995919772,
-            "lng": -71.09228837490083,
+            "lat": 42.2446,
+            "lng": -70.9673,
             "source": "MassDOT roadway events",
-            "dist_mi": 1.8,
+            "dist_mi": 9.3,
+            "boston": true,
+            "start_fmt": null,
+            "end_fmt": null
+          },
+          {
+            "id": "evt--1",
+            "type": "Incident",
+            "road": "Fore River Bridge (3A) NB and SB Exit",
+            "direction": "NB and SB",
+            "desc": "Traffic Incidents",
+            "start": null,
+            "end": null,
+            "lat": 42.2446,
+            "lng": -70.9673,
+            "source": "MassDOT roadway events",
+            "dist_mi": 9.3,
             "boston": true,
             "start_fmt": null,
             "end_fmt": null
@@ -255,7 +271,7 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
+      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
         "through": "2026-10-28",
@@ -280,7 +296,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-10-31T06:34:34.921616-04:00",
+      "fetched_at": "2026-10-31T12:35:30.076369-04:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
