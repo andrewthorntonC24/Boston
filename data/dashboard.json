@@ -1,76 +1,76 @@
 {
-  "generated_at": "2026-11-01T05:37:39.325117-05:00",
+  "generated_at": "2026-11-01T11:36:46.697913-05:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-11-01T05:37:39.325117-05:00",
+      "fetched_at": "2026-11-01T11:36:46.697913-05:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-11-01T05:05:41+00:00",
+        "updated": "2026-11-01T13:39:19+00:00",
         "days": [
           {
             "date": "2026-11-01",
             "dow": "Sun",
-            "high": 58,
-            "low": 43,
+            "high": 61,
+            "low": 45,
             "desc": "Sunny",
             "precip": 0,
-            "wind": "W 3 to 7 mph"
+            "wind": "W 10 mph"
           },
           {
             "date": "2026-11-02",
             "dow": "Mon",
-            "high": 68,
-            "low": 48,
+            "high": 70,
+            "low": 49,
             "desc": "Mostly Sunny",
             "precip": 0,
-            "wind": "SW 6 to 10 mph"
+            "wind": "SW 10 mph"
           },
           {
             "date": "2026-11-03",
             "dow": "Tue",
-            "high": 67,
-            "low": 50,
+            "high": 72,
+            "low": 53,
             "desc": "Mostly Sunny",
             "precip": 0,
-            "wind": "SW 6 mph"
+            "wind": "SW 9 mph"
           },
           {
             "date": "2026-11-04",
             "dow": "Wed",
-            "high": 70,
+            "high": 73,
             "low": 54,
-            "desc": "Mostly Sunny",
+            "desc": "Sunny",
             "precip": 0,
-            "wind": "SW 5 to 9 mph"
+            "wind": "SW 9 mph"
           },
           {
             "date": "2026-11-05",
             "dow": "Thu",
-            "high": 70,
+            "high": 69,
             "low": 57,
             "desc": "Partly Sunny then Slight Chance Light Rain",
-            "precip": 20,
-            "wind": "S 5 to 10 mph"
+            "precip": 22,
+            "wind": "S 6 to 12 mph"
           },
           {
             "date": "2026-11-06",
             "dow": "Fri",
             "high": 67,
-            "low": 52,
+            "low": 53,
             "desc": "Light Rain Likely",
-            "precip": 59,
-            "wind": "S 6 to 9 mph"
+            "precip": 60,
+            "wind": "S 7 to 10 mph"
           },
           {
             "date": "2026-11-07",
             "dow": "Sat",
             "high": 61,
-            "low": null,
-            "desc": "Light Rain Likely",
+            "low": 47,
+            "desc": "Rain Likely",
             "precip": 60,
-            "wind": "NE 10 mph"
+            "wind": "NE 12 mph"
           }
         ],
         "alerts": []
@@ -78,14 +78,14 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-11-01T05:37:39.325117-05:00",
+      "fetched_at": "2026-11-01T11:36:46.697913-05:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 37,
+        "aqi": 21,
         "category": "Good",
         "pollutant": "PM2.5",
         "area": "Boston Metro",
-        "observed": "2026-11-01 5:00",
+        "observed": "2026-11-01 11:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
           {
@@ -115,7 +115,7 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-11-01T05:37:39.325117-05:00",
+      "fetched_at": "2026-11-01T11:36:46.697913-05:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
@@ -174,7 +174,7 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-11-01T05:37:39.325117-05:00",
+      "fetched_at": "2026-11-01T11:36:46.697913-05:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
@@ -248,23 +248,23 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-11-01T05:37:39.325117-05:00",
+      "fetched_at": "2026-11-01T11:36:46.697913-05:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
-        "through": "2026-10-29",
+        "through": "2026-10-30",
         "partial_day_excluded": false,
         "d7": {
-          "now": 1285,
-          "prev": 1525,
+          "now": 1328,
+          "prev": 1544,
           "label": "Last 7 days"
         },
         "d30": {
-          "now": 6501,
-          "prev": 7217,
+          "now": 6524,
+          "prev": 7214,
           "label": "Last 30 days"
         },
         "d365": {
-          "now": 83210,
+          "now": 83263,
           "prev": 81578,
           "label": "Last 365 days"
         },
@@ -273,7 +273,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-11-01T05:37:39.325117-05:00",
+      "fetched_at": "2026-11-01T11:36:46.697913-05:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
