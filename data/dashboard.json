@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-01T17:35:01.517263-05:00",
+  "generated_at": "2026-11-01T23:57:22.722228-05:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-11-01T17:35:01.517263-05:00",
+      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
@@ -12,11 +12,11 @@
           {
             "date": "2026-11-01",
             "dow": "Sun",
-            "high": 61,
+            "high": null,
             "low": 45,
-            "desc": "Sunny",
+            "desc": "Clear",
             "precip": 0,
-            "wind": "W 8 mph"
+            "wind": null
           },
           {
             "date": "2026-11-02",
@@ -71,6 +71,15 @@
             "desc": "Light Rain Likely",
             "precip": 60,
             "wind": "N 12 mph"
+          },
+          {
+            "date": "2026-11-08",
+            "dow": "Sun",
+            "high": 59,
+            "low": null,
+            "desc": "Slight Chance Light Rain",
+            "precip": 21,
+            "wind": "W 7 to 10 mph"
           }
         ],
         "alerts": []
@@ -78,14 +87,14 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-11-01T17:35:01.517263-05:00",
+      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 24,
+        "aqi": 29,
         "category": "Good",
-        "pollutant": "O3",
+        "pollutant": "PM2.5",
         "area": "Boston Metro",
-        "observed": "2026-11-01 17:00",
+        "observed": "2026-11-01 23:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
           {
@@ -115,12 +124,12 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-11-01T17:35:01.517263-05:00",
+      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
         "min_severity": 5,
-        "total_matching": 5,
+        "total_matching": 4,
         "alerts": [
           {
             "id": "1033847",
@@ -143,17 +152,6 @@
               "Green-E"
             ],
             "updated": "2026-08-05T23:03:08-04:00"
-          },
-          {
-            "id": "1042711",
-            "header": "Green Line B Branch: Shuttle buses are being extended to Washington Street from Babcock Street due to a disabled train at Babcock Street. ",
-            "effect": "SHUTTLE",
-            "severity": 7,
-            "lifecycle": "NEW",
-            "routes": [
-              "Green-B"
-            ],
-            "updated": "2026-11-01T15:33:42-05:00"
           },
           {
             "id": "1039320",
@@ -185,7 +183,7 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-11-01T17:35:01.517263-05:00",
+      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
@@ -291,7 +289,7 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-11-01T17:35:01.517263-05:00",
+      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
         "through": "2026-10-30",
@@ -316,7 +314,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-11-01T17:35:01.517263-05:00",
+      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
@@ -589,7 +587,7 @@
             ]
           }
         ],
-        "total_in_window": 153,
+        "total_in_window": 151,
         "geo_sources": {
           "td-garden": null,
           "house-of-blues-boston": "census",
