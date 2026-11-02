@@ -1,85 +1,76 @@
 {
-  "generated_at": "2026-11-01T23:57:22.722228-05:00",
+  "generated_at": "2026-11-02T05:56:31.757430-05:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
+      "fetched_at": "2026-11-02T05:56:31.757430-05:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-11-01T18:59:06+00:00",
+        "updated": "2026-11-02T05:25:23+00:00",
         "days": [
-          {
-            "date": "2026-11-01",
-            "dow": "Sun",
-            "high": null,
-            "low": 45,
-            "desc": "Clear",
-            "precip": 0,
-            "wind": null
-          },
           {
             "date": "2026-11-02",
             "dow": "Mon",
-            "high": 70,
-            "low": 49,
+            "high": 68,
+            "low": 48,
             "desc": "Mostly Sunny",
-            "precip": 0,
-            "wind": "SW 10 mph"
+            "precip": 3,
+            "wind": "SW 5 to 10 mph"
           },
           {
             "date": "2026-11-03",
             "dow": "Tue",
-            "high": 73,
-            "low": 53,
+            "high": 70,
+            "low": 51,
             "desc": "Mostly Sunny",
-            "precip": 0,
-            "wind": "SW 9 mph"
+            "precip": 3,
+            "wind": "SW 5 mph"
           },
           {
             "date": "2026-11-04",
             "dow": "Wed",
             "high": 73,
-            "low": 56,
+            "low": 54,
             "desc": "Sunny",
             "precip": 0,
-            "wind": "SW 9 mph"
+            "wind": "SW 5 to 9 mph"
           },
           {
             "date": "2026-11-05",
             "dow": "Thu",
-            "high": 70,
+            "high": 71,
             "low": 59,
-            "desc": "Partly Sunny then Slight Chance Light Rain",
-            "precip": 21,
-            "wind": "S 7 to 12 mph"
+            "desc": "Partly Sunny",
+            "precip": 11,
+            "wind": "S 5 to 10 mph"
           },
           {
             "date": "2026-11-06",
             "dow": "Fri",
-            "high": 68,
-            "low": 53,
+            "high": 70,
+            "low": 54,
             "desc": "Light Rain Likely",
-            "precip": 66,
-            "wind": "S 9 mph"
+            "precip": 65,
+            "wind": "S 5 to 8 mph"
           },
           {
             "date": "2026-11-07",
             "dow": "Sat",
-            "high": 62,
+            "high": 64,
             "low": 48,
             "desc": "Light Rain Likely",
-            "precip": 60,
-            "wind": "N 12 mph"
+            "precip": 64,
+            "wind": "N 6 to 9 mph"
           },
           {
             "date": "2026-11-08",
             "dow": "Sun",
-            "high": 59,
+            "high": 61,
             "low": null,
-            "desc": "Slight Chance Light Rain",
-            "precip": 21,
-            "wind": "W 7 to 10 mph"
+            "desc": "Slight Chance Light Rain then Mostly Sunny",
+            "precip": 24,
+            "wind": "W 8 mph"
           }
         ],
         "alerts": []
@@ -87,23 +78,16 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
+      "fetched_at": "2026-11-02T05:56:31.757430-05:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 29,
+        "aqi": 28,
         "category": "Good",
         "pollutant": "PM2.5",
         "area": "Boston Metro",
-        "observed": "2026-11-01 23:00",
+        "observed": "2026-11-02 5:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
-          {
-            "date": "2026-11-01",
-            "aqi": 40,
-            "category": "Good",
-            "agency": "Massachusetts Dept. of Environmental Protection",
-            "pollutant": "PM2.5"
-          },
           {
             "date": "2026-11-02",
             "aqi": 50,
@@ -124,12 +108,12 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
+      "fetched_at": "2026-11-02T05:56:31.757430-05:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
         "min_severity": 5,
-        "total_matching": 4,
+        "total_matching": 3,
         "alerts": [
           {
             "id": "1033847",
@@ -154,20 +138,6 @@
             "updated": "2026-08-05T23:03:08-04:00"
           },
           {
-            "id": "1039320",
-            "header": "Green Line: No trains between North Station & Babcock St (B), Kenmore (C+D), & Heath St (E), October 31 - November 1. Use buses between Babcock, Kenmore, Heath St (Rt 39) & Copley/Back Bay. Use Orange Line between North Station & Back Bay.",
-            "effect": "SUSPENSION",
-            "severity": 7,
-            "lifecycle": "NEW",
-            "routes": [
-              "Green-B",
-              "Green-C",
-              "Green-D",
-              "Green-E"
-            ],
-            "updated": "2026-10-28T19:01:15-04:00"
-          },
-          {
             "id": "1037698",
             "header": "Green Line C Branch: Trains are skipping Saint Paul Street outbound through Nov 7 for accessibility upgrades. Riders can instead board or disembark one stop away at either Coolidge Corner or Kent Street, which are 0.2 miles away.",
             "effect": "STATION_CLOSURE",
@@ -183,7 +153,7 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
+      "fetched_at": "2026-11-02T05:56:31.757430-05:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
@@ -289,7 +259,7 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
+      "fetched_at": "2026-11-02T05:56:31.757430-05:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
         "through": "2026-10-30",
@@ -314,7 +284,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-11-01T23:57:22.722228-05:00",
+      "fetched_at": "2026-11-02T05:56:31.757430-05:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
@@ -587,7 +557,7 @@
             ]
           }
         ],
-        "total_in_window": 151,
+        "total_in_window": 144,
         "geo_sources": {
           "td-garden": null,
           "house-of-blues-boston": "census",
