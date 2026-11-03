@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-03T05:53:52.562966-05:00",
+  "generated_at": "2026-11-03T11:52:58.814140-05:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-11-03T05:53:52.562966-05:00",
+      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-11-03T05:19:03+00:00",
+        "updated": "2026-11-03T13:59:09+00:00",
         "days": [
           {
             "date": "2026-11-03",
@@ -40,7 +40,7 @@
             "date": "2026-11-06",
             "dow": "Fri",
             "high": 70,
-            "low": 56,
+            "low": 57,
             "desc": "Light Rain Likely",
             "precip": 72,
             "wind": "S 3 to 7 mph"
@@ -48,29 +48,29 @@
           {
             "date": "2026-11-07",
             "dow": "Sat",
-            "high": 65,
-            "low": 50,
+            "high": 63,
+            "low": 49,
             "desc": "Light Rain",
-            "precip": 77,
+            "precip": 76,
             "wind": "N 8 mph"
           },
           {
             "date": "2026-11-08",
             "dow": "Sun",
-            "high": 61,
-            "low": 45,
-            "desc": "Chance Light Rain then Mostly Sunny",
-            "precip": 27,
-            "wind": "NW 7 mph"
+            "high": 60,
+            "low": 46,
+            "desc": "Chance Light Rain",
+            "precip": 26,
+            "wind": "NW 8 mph"
           },
           {
             "date": "2026-11-09",
             "dow": "Mon",
-            "high": 60,
-            "low": null,
+            "high": 58,
+            "low": 44,
             "desc": "Chance Light Rain",
             "precip": 32,
-            "wind": "W 5 to 8 mph"
+            "wind": "W 6 to 9 mph"
           }
         ],
         "alerts": []
@@ -78,14 +78,14 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-11-03T05:53:52.562966-05:00",
+      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 31,
+        "aqi": 43,
         "category": "Good",
         "pollutant": "PM2.5",
         "area": "Boston Metro",
-        "observed": "2026-11-03 5:00",
+        "observed": "2026-11-03 11:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
           {
@@ -108,6 +108,13 @@
             "category": "Good",
             "agency": "Massachusetts Dept. of Environmental Protection",
             "pollutant": "PM2.5"
+          },
+          {
+            "date": "2026-11-06",
+            "aqi": null,
+            "category": "Good",
+            "agency": "Massachusetts Dept. of Environmental Protection",
+            "pollutant": "PM2.5"
           }
         ],
         "notes": []
@@ -115,7 +122,7 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-11-03T05:53:52.562966-05:00",
+      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
@@ -160,29 +167,13 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-11-03T05:53:52.562966-05:00",
+      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
         "items": [
           {
-            "id": "evt--1",
-            "type": "Incident",
-            "road": "Chelsea Street Bridge NB and SB Exit",
-            "direction": "NB and SB",
-            "desc": "Traffic Incidents",
-            "start": null,
-            "end": null,
-            "lat": 42.3862987,
-            "lng": -71.0227204,
-            "source": "MassDOT roadway events",
-            "dist_mi": 2.6,
-            "boston": true,
-            "start_fmt": null,
-            "end_fmt": null
-          },
-          {
-            "id": "evt--2",
+            "id": "evt--0",
             "type": "Incident",
             "road": "Fore River Bridge (3A) NB and SB Exit",
             "direction": "NB and SB",
@@ -196,46 +187,30 @@
             "boston": true,
             "start_fmt": null,
             "end_fmt": null
-          },
-          {
-            "id": "evt--0",
-            "type": "Incident",
-            "road": "I-495 SB Exit 99",
-            "direction": "SB",
-            "desc": "Traffic Incidents",
-            "start": null,
-            "end": null,
-            "lat": 42.665556,
-            "lng": -71.1920294,
-            "source": "MassDOT roadway events",
-            "dist_mi": 22.2,
-            "boston": false,
-            "start_fmt": null,
-            "end_fmt": null
           }
         ]
       }
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-11-03T05:53:52.562966-05:00",
+      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
-        "through": "2026-10-31",
+        "through": "2026-11-01",
         "partial_day_excluded": false,
         "d7": {
-          "now": 1344,
-          "prev": 1572,
+          "now": 1417,
+          "prev": 1565,
           "label": "Last 7 days"
         },
         "d30": {
           "now": 6507,
-          "prev": 7233,
+          "prev": 7221,
           "label": "Last 30 days"
         },
         "d365": {
-          "now": 83265,
-          "prev": 81593,
+          "now": 83257,
+          "prev": 81572,
           "label": "Last 365 days"
         },
         "method": "ckan-csv"
@@ -243,7 +218,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-11-03T05:53:52.562966-05:00",
+      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
