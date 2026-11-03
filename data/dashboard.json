@@ -1,76 +1,76 @@
 {
-  "generated_at": "2026-11-03T11:52:58.814140-05:00",
+  "generated_at": "2026-11-03T17:40:42.758189-05:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
+      "fetched_at": "2026-11-03T17:40:42.758189-05:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-11-03T13:59:09+00:00",
+        "updated": "2026-11-03T18:48:22+00:00",
         "days": [
           {
             "date": "2026-11-03",
             "dow": "Tue",
             "high": 72,
             "low": 54,
-            "desc": "Partly Sunny",
-            "precip": 5,
-            "wind": "SW 5 mph"
+            "desc": "Mostly Cloudy",
+            "precip": 2,
+            "wind": "SW 6 mph"
           },
           {
             "date": "2026-11-04",
             "dow": "Wed",
-            "high": 75,
+            "high": 76,
             "low": 57,
-            "desc": "Sunny",
+            "desc": "Mostly Sunny",
             "precip": 5,
             "wind": "SW 6 to 10 mph"
           },
           {
             "date": "2026-11-05",
             "dow": "Thu",
-            "high": 73,
-            "low": 61,
-            "desc": "Partly Sunny",
-            "precip": 12,
+            "high": 74,
+            "low": 62,
+            "desc": "Mostly Cloudy",
+            "precip": 13,
             "wind": "SW 6 to 12 mph"
           },
           {
             "date": "2026-11-06",
             "dow": "Fri",
-            "high": 70,
+            "high": 69,
             "low": 57,
-            "desc": "Light Rain Likely",
-            "precip": 72,
-            "wind": "S 3 to 7 mph"
+            "desc": "Rain",
+            "precip": 84,
+            "wind": "S 7 mph"
           },
           {
             "date": "2026-11-07",
             "dow": "Sat",
             "high": 63,
-            "low": 49,
+            "low": 47,
             "desc": "Light Rain",
             "precip": 76,
-            "wind": "N 8 mph"
+            "wind": "NW 9 mph"
           },
           {
             "date": "2026-11-08",
             "dow": "Sun",
-            "high": 60,
-            "low": 46,
+            "high": 59,
+            "low": 41,
             "desc": "Chance Light Rain",
-            "precip": 26,
-            "wind": "NW 8 mph"
+            "precip": 25,
+            "wind": "W 9 mph"
           },
           {
             "date": "2026-11-09",
             "dow": "Mon",
-            "high": 58,
-            "low": 44,
-            "desc": "Chance Light Rain",
-            "precip": 32,
-            "wind": "W 6 to 9 mph"
+            "high": 57,
+            "low": 40,
+            "desc": "Slight Chance Light Rain",
+            "precip": 20,
+            "wind": "W 8 to 14 mph"
           }
         ],
         "alerts": []
@@ -78,14 +78,14 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
+      "fetched_at": "2026-11-03T17:40:42.758189-05:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 43,
+        "aqi": 30,
         "category": "Good",
-        "pollutant": "PM2.5",
+        "pollutant": "O3",
         "area": "Boston Metro",
-        "observed": "2026-11-03 11:00",
+        "observed": "2026-11-03 17:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
           {
@@ -122,7 +122,7 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
+      "fetched_at": "2026-11-03T17:40:42.758189-05:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
@@ -167,13 +167,29 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
+      "fetched_at": "2026-11-03T17:40:42.758189-05:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
         "items": [
           {
-            "id": "evt--0",
+            "id": "evt--1",
+            "type": "Incident",
+            "road": "I-93 NB Exit 11",
+            "direction": "NB",
+            "desc": "Traffic Incidents",
+            "start": null,
+            "end": null,
+            "lat": 42.27752878688804,
+            "lng": -71.04847415439812,
+            "source": "MassDOT roadway events",
+            "dist_mi": 5.7,
+            "boston": true,
+            "start_fmt": null,
+            "end_fmt": null
+          },
+          {
+            "id": "evt--2",
             "type": "Incident",
             "road": "Fore River Bridge (3A) NB and SB Exit",
             "direction": "NB and SB",
@@ -193,7 +209,7 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
+      "fetched_at": "2026-11-03T17:40:42.758189-05:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
         "through": "2026-11-01",
@@ -218,7 +234,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-11-03T11:52:58.814140-05:00",
+      "fetched_at": "2026-11-03T17:40:42.758189-05:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
