@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-11-04T06:08:33.649376-05:00",
+  "generated_at": "2026-11-04T11:54:52.993248-05:00",
   "sections": {
     "weather": {
       "status": "ok",
-      "fetched_at": "2026-11-04T06:08:33.649376-05:00",
+      "fetched_at": "2026-11-04T11:54:52.993248-05:00",
       "data": {
         "source": "National Weather Service (api.weather.gov)",
         "office": "BOX",
-        "updated": "2026-11-04T08:55:53+00:00",
+        "updated": "2026-11-04T15:07:36+00:00",
         "days": [
           {
             "date": "2026-11-04",
             "dow": "Wed",
-            "high": 76,
+            "high": 78,
             "low": 58,
             "desc": "Sunny",
             "precip": 3,
-            "wind": "SW 6 to 10 mph"
+            "wind": "SW 14 mph"
           },
           {
             "date": "2026-11-05",
@@ -67,7 +67,7 @@
             "date": "2026-11-10",
             "dow": "Tue",
             "high": 58,
-            "low": null,
+            "low": 40,
             "desc": "Mostly Sunny",
             "precip": 6,
             "wind": "SW 8 to 13 mph"
@@ -78,14 +78,14 @@
     },
     "air": {
       "status": "ok",
-      "fetched_at": "2026-11-04T06:08:33.649376-05:00",
+      "fetched_at": "2026-11-04T11:54:52.993248-05:00",
       "data": {
         "source": "AirNow (EPA)",
-        "aqi": 38,
+        "aqi": 43,
         "category": "Good",
         "pollutant": "PM2.5",
         "area": "Boston Metro",
-        "observed": "2026-11-04 5:00",
+        "observed": "2026-11-04 11:00",
         "guidance": "Air quality is satisfactory and poses little or no risk.",
         "forecast": [
           {
@@ -115,7 +115,7 @@
     },
     "transit": {
       "status": "ok",
-      "fetched_at": "2026-11-04T06:08:33.649376-05:00",
+      "fetched_at": "2026-11-04T11:54:52.993248-05:00",
       "data": {
         "source": "MBTA V3 API",
         "route_types": "0,1",
@@ -160,39 +160,55 @@
     },
     "traffic": {
       "status": "ok",
-      "fetched_at": "2026-11-04T06:08:33.649376-05:00",
+      "fetched_at": "2026-11-04T11:54:52.993248-05:00",
       "data": {
         "source": "MassDOT (roadway events feed + Connected Work Zones)",
         "notes": [],
         "items": [
           {
+            "id": "evt--0",
+            "type": "Incident",
+            "road": "Chelsea Street Bridge NB and SB Exit",
+            "direction": "NB and SB",
+            "desc": "Traffic Incidents",
+            "start": null,
+            "end": null,
+            "lat": 42.3862987,
+            "lng": -71.0227204,
+            "source": "MassDOT roadway events",
+            "dist_mi": 2.6,
+            "boston": true,
+            "start_fmt": null,
+            "end_fmt": null
+          },
+          {
             "id": "evt--1",
             "type": "Incident",
-            "road": "US-1 SB Exit Tobin Br",
+            "road": "I-95 SB Exit x 41",
             "direction": "SB",
             "desc": "Traffic Incidents",
             "start": null,
             "end": null,
-            "lat": 42.39030957251861,
-            "lng": -71.04146051406862,
+            "lat": 42.36995213887508,
+            "lng": -71.26964462265569,
             "source": "MassDOT roadway events",
-            "dist_mi": 2.3,
+            "dist_mi": 10.8,
             "boston": true,
             "start_fmt": null,
             "end_fmt": null
           },
           {
             "id": "evt--2",
-            "type": "Construction",
-            "road": "I-495 SB Exit 75",
-            "direction": "SB",
-            "desc": "Fire",
+            "type": "Incident",
+            "road": "I-90  Exit",
+            "direction": "",
+            "desc": "Traffic Incidents",
             "start": null,
             "end": null,
-            "lat": 42.49171639922248,
-            "lng": -71.54185802002185,
+            "lat": null,
+            "lng": null,
             "source": "MassDOT roadway events",
-            "dist_mi": 26.3,
+            "dist_mi": null,
             "boston": false,
             "start_fmt": null,
             "end_fmt": null
@@ -202,7 +218,7 @@
     },
     "crime": {
       "status": "ok",
-      "fetched_at": "2026-11-04T06:08:33.649376-05:00",
+      "fetched_at": "2026-11-04T11:54:52.993248-05:00",
       "data": {
         "source": "Analyze Boston, Crime Incident Reports (Crime Incident Reports - 2023 to Present)",
         "through": "2026-11-01",
@@ -227,7 +243,7 @@
     },
     "events": {
       "status": "ok",
-      "fetched_at": "2026-11-04T06:08:33.649376-05:00",
+      "fetched_at": "2026-11-04T11:54:52.993248-05:00",
       "data": {
         "source": "Ticketmaster Discovery API",
         "selected": [
