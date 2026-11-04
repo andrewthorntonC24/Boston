@@ -16,6 +16,7 @@ from datetime import date, datetime, timedelta
 from html.parser import HTMLParser
 from pathlib import Path
 
+from .sources.massdot import miles
 from .config import (CHART_RADIUS_MI, DATA_DIR, DIST_DIR, PROTEST_STALE_DAYS, TEMPLATE, TOP_EVENTS, TZ, WINDOW_DAYS)
 
 CLS = {"Low": "low", "Medium": "medium", "High": "high", "Very High": "very-high"}
@@ -147,28 +148,127 @@ def protest_rows(pr, today):
     return sorted(out, key=lambda x: x[0])
 
 
-def render_protests(today):
+def _norm(x):
+    return re.sub(r"[^a-z0-9 ]", "", (x or "").lower()).strip()
+
+
+def _start_minutes(e):
+    t = e.get("sort_time")
+    if t:
+        h, m = t.split(":")
+        return int(h) * 60 + int(m)
+    m = re.match(r"\s*(\d{1,2}):(\d{2})\s*([AP]M)", e.get("time") or e.get("time_text") or "", re.I)
+    if not m:
+        return None
+    h = int(m.group(1)) % 12 + (12 if m.group(3).upper() == "PM" else 0)
+    return h * 60 + int(m.group(2))
+
+
+def _same_event(a, b):
+    """Same day and either the same name, or at nearly the same place and time (two calendars often word a title
+    differently, for example "Bearing Witness @ ICE" and "Bear Witness- Protest and Food Drive Wednesdays at ICE").
+    Deliberately strict (within half a mile AND starting within 30 minutes): a different rally held at the same site
+    later in the day must stay a separate row, not be absorbed into a vigil."""
+    if a["date"] != b["date"]:
+        return False
+    if _norm(a["e"]["name"]) == _norm(b["e"]["name"]):
+        return True
+    ea, eb = a["e"], b["e"]
+    if None in (ea.get("lat"), ea.get("lng"), eb.get("lat"), eb.get("lng")):
+        return False
+    ta, tb = _start_minutes(ea), _start_minutes(eb)
+    return (miles(ea["lat"], ea["lng"], eb["lat"], eb["lng"]) <= 0.5 and ta is not None and tb is not None and abs(ta - tb) <= 30)
+
+
+def _join_names(names):
+    return names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
+
+
+def merge_protests(pr, auto, today):
+    """Hand-kept entries plus feed entries, one row per real-world demonstration. The hand-kept wording wins when both
+    describe the same event, and every source that lists it is named."""
+    end = today + timedelta(days=WINDOW_DAYS)
+    rows = [{"date": d, "e": e, "dt": dt, "manual": True, "auto": []} for d, e, dt in protest_rows(pr, today)]
+    for a in (auto or {}).get("events", []):
+        d = date.fromisoformat(a["date"])
+        if today <= d <= end:
+            dt = "%s, %s %d<br>%s" % (d.strftime("%a"), d.strftime("%b"), d.day, a["time_text"])
+            rows.append({"date": d, "e": a, "dt": dt, "manual": False, "auto": [a["source_name"]]})
+    merged = []
+    for r in sorted(rows, key=lambda r: (r["date"], not r["manual"], r["e"]["name"])):
+        hit = next((m for m in merged if _same_event(m, r)), None)
+        if hit is None:
+            merged.append(r)
+        else:
+            for name in r["auto"]:
+                if name not in hit["auto"]:
+                    hit["auto"].append(name)
+    out = []
+    for m in merged:
+        names = list(m["auto"]) + (["hand-kept list"] if m["manual"] else [])
+        out.append((m["date"], dict(m["e"], source_label=_join_names(names)), m["dt"]))
+    return sorted(out, key=lambda x: (x[0], _start_minutes(x[1]) if _start_minutes(x[1]) is not None else 0, x[1]["name"]))
+
+
+def _checked(src):
+    if isinstance(src, str):
+        return esc(src)
+    when = (", checked %s" % fmt_day(date.fromisoformat(src["checked_on"]))) if src.get("checked_on") else ""
+    note = (": " + esc(src["note"])) if src.get("note") else ""
+    return esc(src["name"]) + when + note
+
+
+def render_protests(today, auto_sec):
     pr = json.loads((DATA_DIR / "protests.json").read_text())
-    age = (today - date.fromisoformat(pr["reviewed_on"])).days
-    stale = age > PROTEST_STALE_DAYS
-    rows_data = protest_rows(pr, today)
+    auto = data_of(auto_sec)
+    rows_data = merge_protests(pr, auto, today)
     rows = ['        <tr>\n          <td data-label="Date(s)">%s</td>\n          <td data-label="Event" class="event-name">%s</td>\n          <td data-label="Category">%s</td>\n'
-            '          <td data-label="Region">%s</td>\n          <td data-label="Venue / Area">%s</td>\n          <td data-label="Est. Attendance" class="note">%s</td>\n'
-            '          <td data-label="Disruption Rating">%s</td>\n        </tr>' % (dt, esc(e["name"]), esc(e["category"]), esc(e["region"]), esc(e["venue"]), esc(e["attendance"]), pill(e["rating"]))
+            '          <td data-label="Region">%s</td>\n          <td data-label="Venue / Area">%s</td>\n          <td data-label="Est. Attendance" class="note">%s Source: %s.</td>\n'
+            '          <td data-label="Disruption Rating">%s</td>\n        </tr>' % (dt, esc(e["name"]), esc(e["category"]), esc(e["region"]), esc(e["venue"]),
+                                                                                  esc(e["attendance"]), esc(e["source_label"]), pill(e["rating"]))
             for _, e, dt in rows_data]
     if not rows:
-        rows = ['        <tr><td colspan="7" class="note">No protests confirmed for this window in the last manual review.</td></tr>']
-    warn = ' <span class="pending">Stale: last reviewed %d days ago. Re-check the sources before relying on this section.</span>' % age if stale else ""
-    meta = ('<p class="meta">Manually maintained list: no reliable protest feed exists, so the automation cannot refresh this section. Last reviewed %s. '
-            'Sources checked: %s.%s</p>') % (fmt_day(date.fromisoformat(pr["reviewed_on"])), esc("; ".join(pr["sources_checked"])), warn)
-    pins = [{"name": esc(e["name"]), "when": esc(re.sub("<br>", ", ", dt)), "note": esc(e["attendance"]), "lat": e["lat"], "lng": e["lng"]}
-            for _, e, dt in rows_data if e.get("lat")]
-    seen, uniq = set(), []
-    for p in pins:
-        if p["name"] not in seen:
-            seen.add(p["name"]); uniq.append(p)
-    return {"unrest_meta": meta, "unrest_rows": "\n".join(rows), "unrest_pins_json": js(uniq),
-            "unrest_notes": '<p class="stamp">Ratings follow the Disruption Rating Rubric. Both small-group formats here are Low because density stays well under 2 people per m².</p>',
+        rows = ['        <tr><td colspan="7" class="note">No demonstrations confirmed for this window by the automatic feeds or the hand-kept list.</td></tr>']
+
+    if auto:
+        def feed_txt(f):
+            if f["status"] == "ok":
+                return "OK, %d listings" % f["listed"]
+            if f["status"] == "hand":
+                return "read by hand (%s)" % esc(f["error"])
+            return '<span class="pending">failed (%s)</span>' % esc(f["error"])
+        feeds = "; ".join("%s: %s" % (esc(f["name"]), feed_txt(f)) for f in auto["feeds"])
+        auto_txt = "Automatic calendar feeds, read on every run: %s. %s" % (feeds, fresh(auto_sec))
+        notes_txt = " ".join(esc(n) for n in auto.get("notes", []))
+    else:
+        auto_txt, notes_txt = "Automatic calendar feeds: %s" % fresh(auto_sec), ""
+    age = (today - date.fromisoformat(pr["reviewed_on"])).days
+    warn = (' <span class="pending">Stale: the hand-reviewed sources were last checked %d days ago. Re-check them before relying on this section.</span>' % age
+            if age > PROTEST_STALE_DAYS else "")
+    meta = ('<p class="meta">%s %s Reviewed by hand (last full review %s): %s.%s</p>' % (
+        auto_txt, notes_txt, fmt_day(date.fromisoformat(pr["reviewed_on"])), "; ".join(_checked(x) for x in pr["sources_checked"]), warn))
+
+    pins, seen = [], set()
+    for _, e, dt in rows_data:
+        if e.get("lat") is not None and e.get("lng") is not None and e["name"] not in seen:
+            seen.add(e["name"])
+            pins.append({"name": esc(e["name"]), "when": esc(re.sub("<br>", ", ", dt)), "note": esc(e["attendance"]), "lat": e["lat"], "lng": e["lng"]})
+
+    skipped, seen_s = [], set()
+    counted = {(_norm(e["name"]), d.isoformat()) for d, e, _ in rows_data}   # counted by ANY source, so never "not counted"
+    for sk in (auto or {}).get("skipped", []):
+        key = (_norm(sk["name"]), sk["date"])
+        if key in seen_s or key in counted or sk["reason"].startswith("outside"):
+            continue
+        seen_s.add(key)
+        dd = date.fromisoformat(sk["date"])
+        skipped.append("%s (%s %d%s)" % (esc(sk["name"]), dd.strftime("%b"), dd.day, ", online" if sk["reason"] == "online event" else ""))
+    notes = ('<p class="stamp">Ratings follow the Disruption Rating Rubric. Listings from the calendar feeds are rated Low provisionally because organizers do not '
+             'publish crowd sizes; re-rate any event that draws a large crowd. Organizers may cancel for weather, so confirm before relying on a listing.</p>')
+    if skipped:
+        notes += ('\n    <p class="stamp">Also on the calendars in this window but not counted as demonstrations (talks, films, meetings, trainings, or online events): %s%s.</p>'
+                  % ("; ".join(skipped[:6]), "; and %d more" % (len(skipped) - 6) if len(skipped) > 6 else ""))
+    return {"unrest_meta": meta, "unrest_rows": "\n".join(rows), "unrest_pins_json": js(pins), "unrest_notes": notes,
             "unrest_map_note": '<p class="stamp">Pins are approximate. Events with no single location (for example, statewide actions) are not pinned. Map tiles: Esri, with OpenStreetMap data.</p>'}, rows_data, pr
 
 
@@ -251,9 +351,13 @@ def build_text(secs, today, rows_data, pr, ev_sel, traffic_items):
     else:
         glance.append("<li><strong>Events:</strong> Event data not available this run.</li>")
     if rows_data:
-        glance.append("<li><strong>Protests:</strong> %s (manual list, rated %s).</li>" % ("; ".join("%s, %s" % (esc(e["name"]), dt.replace("<br>", " ")) for _, e, dt in rows_data[:3]), rating_word("Low")))
+        from collections import Counter
+        mix = Counter(e["rating"] for _, e, _ in rows_data)
+        rated = ", ".join("%d %s" % (n, rating_word(r)) for r, n in sorted(mix.items(), key=lambda kv: ["Low", "Medium", "High", "Very High"].index(kv[0])))
+        nxt = "; ".join("%s (%s %d)" % (esc(e["name"]), d.strftime("%b"), d.day) for d, e, _ in rows_data[:3])
+        glance.append("<li><strong>Protests:</strong> %d in-person demonstrations listed for this window (%s). Next up: %s.</li>" % (len(rows_data), rated, nxt))
     else:
-        glance.append("<li><strong>Protests:</strong> None confirmed for this window in the last manual review (%s).</li>" % fmt_day(date.fromisoformat(pr["reviewed_on"])))
+        glance.append("<li><strong>Protests:</strong> None confirmed for this window by the automatic feeds or the hand-kept list (last hand review %s).</li>" % fmt_day(date.fromisoformat(pr["reviewed_on"])))
     inc = sum(1 for i in traffic_items if i["type"] == "Incident")
     con = sum(1 for i in traffic_items if i["type"] == "Construction")
     m = data_of(secs["transit"])
@@ -273,11 +377,17 @@ def build_text(secs, today, rows_data, pr, ev_sel, traffic_items):
     for r in ev_sel[:3]:
         ticker.append(["Event:", "%s at %s, %s. Rated %s." % (r["name"], r["venue"], r["date_text"].replace("<br>", ", "), r["rating"])])
     for _, e, dt in rows_data[:1]:
-        ticker.append(["Protest:", "%s, %s (manual list)." % (e["name"], dt.replace("<br>", " "))])
+        ticker.append(["Protest:", "%s, %s (%s)." % (e["name"], dt.replace("<br>", " "), e["source_label"])])
     ticker.append(["Travel window:", "Nov 8 to 9 is outside this edition. Refresh that picture about one month before travel."])
-    bad = [n for n, s in secs.items() if s["status"] != "ok"]
-    if bad:
-        ticker.append(["Data notice:", "Showing last-known data for: %s. See the stale notes in each section." % ", ".join(bad)])
+    stale = [n for n, s in secs.items() if s["status"] == "stale"]
+    gone = [n for n, s in secs.items() if s["status"] == "unavailable"]
+    msgs = []
+    if stale:
+        msgs.append("showing last-known data for %s" % ", ".join(stale))
+    if gone:
+        msgs.append("no data this run for %s" % ", ".join(gone))
+    if msgs:
+        ticker.append(["Data notice:", "%s. See the notes in each section." % "; ".join(msgs).capitalize()])
     return glance, [[esc(a_), esc(b_)] for a_, b_ in ticker]
 
 
@@ -295,8 +405,10 @@ def rubric_cells(ev_sel, rows_data):
 def footer(secs, pr):
     stamp = fmt_ts(max((s["fetched_at"] for s in secs.values() if s.get("fetched_at")), default=None))
     return ('<p><strong>Sources (latest successful refresh %s):</strong> National Weather Service forecast; AirNow (EPA) air quality; MBTA V3 API alerts; MassDOT roadway events and Connected Work Zones feeds; '
-            'Analyze Boston crime incident reports; Ticketmaster Discovery API; US Census Geocoder for venue pins. Map tiles from Esri and OpenStreetMap.</p>\n'
-            '    <p><strong>Manual sections:</strong> Protest list (last reviewed %s) and Cycleboat. The automation cannot refresh these.</p>\n'
+            'Analyze Boston crime incident reports; Ticketmaster Discovery API; Massachusetts Peace Action, Turn Purple 2 Blue, and Extinction Rebellion Boston calendar feeds; US Census Geocoder for venue pins. '
+            'Map tiles from Esri and OpenStreetMap.</p>\n'
+            '    <p><strong>Reviewed by hand (last full review %s):</strong> Mass 50501, Boston Indivisible, No Kings Boston, Boston.gov traffic advisories, news coverage, and Cycleboat. '
+            'The automation cannot refresh these.</p>\n'
             '    <p><strong>Not covered:</strong> Live traffic conditions beyond the MassDOT feeds (check mass511.com), and any event Ticketmaster does not list.</p>') % (stamp, fmt_day(date.fromisoformat(pr["reviewed_on"])))
 
 
@@ -351,7 +463,7 @@ def render(dash, today=None, template=None):
     tokens.update(render_air(secs["air"], today))
     ev_tokens = render_events(secs["events"], today)
     tokens.update(ev_tokens)
-    pr_tokens, rows_data, pr = render_protests(today)
+    pr_tokens, rows_data, pr = render_protests(today, secs.get("protests") or {"status": "unavailable", "data": None, "error": "the automatic protest feeds have not run yet"})
     tokens.update(pr_tokens)
     tr_tokens, traffic_items = render_traffic(secs["traffic"], secs["transit"])
     tokens.update(tr_tokens)

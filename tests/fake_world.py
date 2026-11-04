@@ -5,6 +5,9 @@ They prove the pipeline's logic (parsing, ranking, fail-soft, rendering, escapin
 live APIs return exactly this shape. The first real run is the real test; see the README checklist."""
 import io
 from datetime import date, timedelta
+from pathlib import Path
+
+FIX = Path(__file__).parent / "fixtures"
 
 TODAY = date(2026, 10, 21)
 
@@ -137,6 +140,12 @@ def route_json(url, params=None, headers=None, timeout=30):
 def route_text(url, params=None, headers=None, timeout=30):
     if "events.massdot" in url:
         return MASSDOT_XML
+    if "masspeaceaction.org" in url:
+        return (FIX / "mapa_sample_abridged.ics").read_text(encoding="utf-8")
+    if "turnpurple2blue.org" in url:
+        return (FIX / "tp2b_sample_listings.ics").read_text(encoding="utf-8")
+    if "xrboston.org" in url:
+        return (FIX / "xr_sample_synthetic.ics").read_text(encoding="utf-8")
     raise AssertionError(url)
 
 

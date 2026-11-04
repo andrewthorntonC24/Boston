@@ -10,12 +10,12 @@ import sys
 from datetime import datetime, timedelta
 
 from . import events as ev
-from .config import (CENTER, CHART_MAX_ITEMS, CHART_RADIUS_MI, DATA_DIR, MAP_RADIUS_MI, TOP_EVENTS, TZ,
+from .config import (CENTER, CHART_MAX_ITEMS, CHART_RADIUS_MI, DATA_DIR, MAP_RADIUS_MI, PROTEST_FEEDS, TOP_EVENTS, TZ,
                      WINDOW_DAYS, env)
 from .http import SourceError
-from .sources import airnow, crime, geocode, massdot, mbta, nws, ticketmaster
+from .sources import airnow, crime, geocode, massdot, mbta, nws, protests, ticketmaster
 
-SECTIONS = ["weather", "air", "transit", "traffic", "crime", "events"]
+SECTIONS = ["weather", "air", "transit", "traffic", "crime", "events", "protests"]
 
 
 def _load(p, default):
@@ -69,6 +69,7 @@ def default_sources(now):
                                          MAP_RADIUS_MI, CHART_RADIUS_MI, CHART_MAX_ITEMS),
         "crime": lambda: crime.fetch(env("CRIME_ARCGIS_URL"), env("CRIME_ARCGIS_DATE_FIELD"), now.date()),
         "events": lambda: build_events(now, now.date()),
+        "protests": lambda: protests.fetch(now.date(), PROTEST_FEEDS, _load(DATA_DIR / "protests.json", {})),
     }
 
 
