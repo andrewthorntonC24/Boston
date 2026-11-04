@@ -1,0 +1,55 @@
+name: Repair file layout (one time)
+
+# Use this once if an upload put files loose at the top of the repo instead of inside src, data, and tests.
+# It moves each misplaced file into its proper folder (replacing the older copy there) and commits the result.
+# Safe to run more than once: if nothing is misplaced it changes nothing.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Move misplaced files into their folders
+        run: |
+          move() {
+            if [ -f "$1" ]; then
+              mkdir -p "$(dirname "$2")"
+              git mv -f "$1" "$2"
+              echo "moved $1  ->  $2"
+            fi
+          }
+          move ics.py                          src/ics.py
+          move protests.py                     src/sources/protests.py
+          move config.py                       src/config.py
+          move build_data.py                   src/build_data.py
+          move render.py                       src/render.py
+          move protests.json                   data/protests.json
+          move fake_world.py                   tests/fake_world.py
+          move test_pipeline.py                tests/test_pipeline.py
+          move mapa_sample_abridged.ics        tests/fixtures/mapa_sample_abridged.ics
+          move xr_sample_synthetic.ics         tests/fixtures/xr_sample_synthetic.ics
+          move tp2b_sample_listings.ics        tests/fixtures/tp2b_sample_listings.ics
+
+      - name: Check that the pieces are now where the code expects them
+        run: |
+          missing=0
+          for f in src/ics.py src/sources/protests.py src/config.py src/build_data.py src/render.py data/protests.json \
+                   tests/fake_world.py tests/test_pipeline.py tests/fixtures/mapa_sample_abridged.ics \
+                   tests/fixtures/xr_sample_synthetic.ics tests/fixtures/tp2b_sample_listings.ics; do
+            if [ -f "$f" ]; then echo "ok       $f"; else echo "MISSING  $f"; missing=1; fi
+          done
+          exit $missing
+
+      - name: Commit
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "dashboard-bot@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Nothing to commit."; else git commit -m "Move misplaced files into src, data, and tests"; git push; fi
