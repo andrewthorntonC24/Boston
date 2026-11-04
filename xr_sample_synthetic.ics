@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SYNTHETIC XR test//EN
+BEGIN:VEVENT
+UID:xr-book-club
+DTSTART:20261106T000000Z
+DTEND:20261106T010000Z
+SUMMARY:Virtual Book Club: What If We Get It Right? Part Four
+LOCATION:Signal
+DESCRIPTION:Are you ready to have meaningful discussions about the climate\, hope\, and action?
+END:VEVENT
+BEGIN:VEVENT
+UID:xr-general-meeting
+DTSTART:20261108T210000Z
+DTEND:20261108T230000Z
+SUMMARY:November General Meeting!
+LOCATION:Community Church of Boston. 565 Boylston St\, Boston\, MA 02116
+DESCRIPTION:Our main activity will be about nonviolent direct action ("NVDA")
+END:VEVENT
+BEGIN:VEVENT
+UID:xr-allday
+DTSTART;VALUE=DATE:20261110
+SUMMARY:Banner Drop and Rally
+LOCATION:Boston Common\, Boston\, MA
+DESCRIPTION:A synthetic all-day demonstration used to test date handling.
+END:VEVENT
+BEGIN:VEVENT
+UID:xr-cancelled
+DTSTART;TZID=America/New_York:20261109T120000
+SUMMARY:Cancelled Rally
+STATUS:CANCELLED
+LOCATION:Boston Common\, Boston\, MA
+END:VEVENT
+END:VCALENDAR

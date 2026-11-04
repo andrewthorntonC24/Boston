@@ -1,0 +1,113 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Massachusetts Peace Action - ECPv6.18.3//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Massachusetts Peace Action
+X-ORIGINAL-URL:https://masspeaceaction.org
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20261101T060000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20261105T110000
+DTEND;TZID=America/New_York:20261105T130000
+DTSTAMP:20261014T231031Z
+UID:10007572-1793876400@masspeaceaction.org
+SUMMARY:Justice 4 All Thursdays
+DESCRIPTION:Via Turn Purple 2 Blue:\n\nGreater Assabet Indivisible Network (GAIN) invites you to stand in solidarity with immigrants and resistance to ICE and their cruel and lawless detention of our neighbors Thursdays from 11am-1pm. Regardless of any other political views\, you are welcome to join us and demand Justice 4 All so long as you do so non-violently. \nOur friends at Bearing Witness have been hosting gatherings at this location for many weeks. \nSchedule \n11:00-11:30 Welcome; music; announcements\n11:30-12:30 Stand with signs along District Ave\n12:30-1:00 Optional short march down to Mall Rd.
+URL:https://masspeaceaction.org/event/justice-4-all-thursdays/2026-11-05/
+LOCATION:1000 District Avenue Burlington\, MA 01803 United States\, 1000 District Avenue\, Burlington\, 01803\, United States
+CATEGORIES:Latin America
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20261106T183000
+DTEND;TZID=America/New_York:20261106T203000
+DTSTAMP:20261014T231031Z
+UID:10008496-1793989800@masspeaceaction.org
+SUMMARY:Boiling Point: How America Brought War to Ukraine
+DESCRIPTION:Register to let us know you’ll be there and to pre-order your book! \nAn In-person Book Talk with Stephen Kinzer \nFriday\, November 6 @ 6:30pm \n1991 Massachusetts Ave in North Cambridge (MAPA offices)
+URL:https://masspeaceaction.org/event/boiling-point-how-america-brought-war-to-ukraine/
+LOCATION:St James Episcopal Church – Parish Hall\, 1991 Massachusetts Ave\, Cambridge\, MA\, 02140
+CATEGORIES:Ukraine/Russia
+ORGANIZER;CN="Massachusetts Peace Action":MAILTO:info@masspeaceaction.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20261107T110000
+DTEND;TZID=America/New_York:20261107T130000
+DTSTAMP:20261014T231031Z
+UID:10007873-1794049200@masspeaceaction.org
+SUMMARY:No Fear with Street Theater
+DESCRIPTION:Join the new protest group\, “No Fear Street Theater” for weekly protests on Saturdays starting October 11th from 11am to 1pm. Stand up for immigrants two blocks from the Burlington ICE office. The protests will be held at Burlington Mall Rd. at District Avenue.
+URL:https://masspeaceaction.org/event/no-fear-with-street-theater/2026-11-07/
+LOCATION:1000 District Avenue Burlington\, MA 01803 United States\, 1000 District Avenue\, Burlington\, 01803\, United States
+CATEGORIES:Latin America,Racial Justice and Indigenous Solidarity
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20261109T190000
+DTEND;TZID=America/New_York:20261109T200000
+DTSTAMP:20261014T231031Z
+UID:10008508-1794250800@masspeaceaction.org
+SUMMARY:The Ukraine War Now: Diplomacy\, Power Plays\, & Driving New Nuclear Arms Races
+DESCRIPTION:Trump seems eager to end the Ukraine War on Putin’s terms: full Russian control of Donbas.
+URL:https://masspeaceaction.org/event/the-ukraine-war-now-diplomacy-power-plays-driving-new-nuclear-arms-races/
+LOCATION:Online Event\, MA
+CATEGORIES:Ukraine/Russia
+ORGANIZER;CN="Massachusetts Peace Action":MAILTO:info@masspeaceaction.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20261111T110000
+DTEND;TZID=America/New_York:20261111T130000
+DTSTAMP:20261014T231031Z
+UID:10008000-1794394800@masspeaceaction.org
+SUMMARY:Bearing Witness @ ICE
+DESCRIPTION:Join Bearing Witness @ ICE outside the ICE (Immigration and Customs Enforcement) New England Headquarters office in Burlington\, next to the Burlington Mall\, every Wednesday from 11am-1pm. \nStand with us in solidarity to show our love & support\, express our shame at ICE\, and bear witness to the cruel and unconstitutional actions of our government.
+URL:https://masspeaceaction.org/event/bearing-witness-ice/2026-11-11/
+LOCATION:1000 District Avenue Burlington\, MA 01803 United States\, 1000 District Avenue\, Burlington\, 01803\, United States
+CATEGORIES:Latin America
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20261111T190000
+DTEND;TZID=America/New_York:20261111T200000
+DTSTAMP:20261014T231031Z
+UID:10008399-1794423600@masspeaceaction.org
+SUMMARY:EARTH'S GREATEST ENEMY: A Conversation with Director Abby Martin
+DESCRIPTION:Rescheduled from October 8th\, 2026. \n \nEarth’s Greatest Enemy\, the second feature film project by Abby Martin\, is a groundbreaking anti-imperialist environmental documentary.
+URL:https://masspeaceaction.org/event/earths-greatest-enemy-a-conversation-with-abby-martin-newdate/
+LOCATION:Online Event
+CATEGORIES:Peace and Climate
+ORGANIZER;CN="Massachusetts Peace Action":MAILTO:info@masspeaceaction.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20261112T190000
+DTEND;TZID=America/New_York:20261112T210000
+DTSTAMP:20261014T231031Z
+UID:10008509-1794510000@masspeaceaction.org
+SUMMARY:Peace Open House
+DESCRIPTION:We are Massachusetts Peace Action (MAPA)\, the largest peace or
+ ganization in Massachusetts. We work to end the wars abroad\, and to suppor
+ t immigrants and social justice here at home. And we would love to explore with you the kinds of actions that would be of interest to you.
+URL:https://masspeaceaction.org/event/peace-open-house/
+LOCATION:MA
+CATEGORIES:Massachusetts Peace Action
+ORGANIZER;CN="Massachusetts Peace Action":MAILTO:info@masspeaceaction.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20261116T190000
+DTEND;TZID=America/New_York:20261116T210000
+DTSTAMP:20261014T231031Z
+UID:10008499-1794855600@masspeaceaction.org
+SUMMARY:Wired to Steal: Zionism and the Shaping of the Western Mind
+DESCRIPTION:A book talk by Yoav Litvin and Ilan Pappé \nSince the Hamas assault of October 7\, 2023\, and for more than three years\, Israel has been engaged in what has been described by a consensus of international experts as a genocide.
+URL:https://masspeaceaction.org/event/wired-to-steal/
+LOCATION:Community Church of Boston\, 565 Boylston St\, Boston\, 02116
+ORGANIZER;CN="Massachusetts Peace Action":MAILTO:info@masspeaceaction.org
+GEO:42.3506456;-71.0763255
+END:VEVENT
+END:VCALENDAR

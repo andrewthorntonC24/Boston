@@ -1,0 +1,112 @@
+{
+  "_comment": "Hand-kept protest data. The calendar feeds (MAPA, Turn Purple 2 Blue, XR Boston) are read automatically on every run; this file holds (1) the sources that must be reviewed by hand, with the date each was checked, and (2) weekly demonstrations kept as a backup because the MAPA feed shows each weekly series only once. Update reviewed_on and each checked_on after every hand review.",
+  "reviewed_on": "2026-11-04",
+  "sources_checked": [
+    {
+      "name": "Mass 50501 events (mass50501.org/events)",
+      "checked_on": "2026-11-04",
+      "note": "nothing upcoming, last event was Oct 17"
+    },
+    {
+      "name": "Boston Indivisible calendar (bindivisible.org/calendar)",
+      "checked_on": "2026-11-04",
+      "note": "no listings readable"
+    },
+    {
+      "name": "No Kings Boston (nokings.boston)",
+      "checked_on": "2026-11-04",
+      "note": "covers only the Oct 17 event"
+    },
+    {
+      "name": "Massachusetts Peace Action (masspeaceaction.org/events/list/)",
+      "checked_on": "2026-11-04",
+      "note": "also read automatically as a calendar feed"
+    },
+    {
+      "name": "Turn Purple 2 Blue statewide calendar (turnpurple2blue.org/events)",
+      "checked_on": "2026-11-04",
+      "note": "also read automatically as a calendar feed, no in-person demonstrations listed for Nov 8 and 9"
+    },
+    {
+      "name": "Extinction Rebellion Boston (xrboston.org/action/)",
+      "checked_on": "2026-11-04",
+      "note": "no demonstrations in the window, only an online book club (Nov 5), a general meeting (Nov 8), and an online welcome call (Nov 10)"
+    },
+    {
+      "name": "Boston Protest List and protest.boston",
+      "checked_on": "2026-11-04",
+      "note": "could not be found or read, the original dashboard noted its calendar was an embedded Google calendar"
+    },
+    {
+      "name": "Boston.gov traffic advisory (Oct 30)",
+      "checked_on": "2026-11-04",
+      "note": "lists the Veterans Day parade on Sat Nov 7 (noon, Copley Square to City Hall Plaza, parking restricted) but no demonstrations"
+    },
+    {
+      "name": "News coverage",
+      "checked_on": "2026-11-04",
+      "note": "no large scheduled demonstration found for Nov 4 to 11, but short-notice rallies drew thousands to Boston Common earlier in 2026 so check again before relying on this"
+    },
+    {
+      "name": "Resistance Calendar (gregcookland.com/wonderland/calendar)",
+      "checked_on": "2026-11-04",
+      "note": "NOT USED, last updated Oct 30, 2020 so its Nov dates are from 2020"
+    }
+  ],
+  "known_places": {
+    "1000 District Avenue": {
+      "lat": 42.4885,
+      "lng": -71.2175,
+      "note": "Burlington ICE office, approximate"
+    },
+    "Burlington Mall Rd": {
+      "lat": 42.488,
+      "lng": -71.216,
+      "note": "near the ICE office, approximate"
+    }
+  },
+  "events": [
+    {
+      "id": "burlington-ice-vigil",
+      "name": "Bearing Witness @ ICE",
+      "recurrence": "weekly:Wed",
+      "time": "11:00 AM to 1:00 PM",
+      "category": "Vigil / protest",
+      "region": "Burlington, MA",
+      "venue": "1000 District Ave, outside the ICE New England office",
+      "attendance": "Small standing vigil, typically a few dozen to a few hundred people. Density well under 2 people per m². Weekly Wednesday schedule confirmed by the MAPA calendar on Nov 4; organizers may cancel for severe weather.",
+      "rating": "Low",
+      "lat": 42.4885,
+      "lng": -71.2175,
+      "confirmed_on": "2026-11-04"
+    },
+    {
+      "id": "burlington-justice-4-all",
+      "name": "Justice 4 All Thursdays",
+      "recurrence": "weekly:Thu",
+      "time": "11:00 AM to 1:00 PM",
+      "category": "Vigil / protest",
+      "region": "Burlington, MA",
+      "venue": "1000 District Ave, along District Ave near the ICE office",
+      "attendance": "Standing demonstration with signs along District Ave, with an optional short march to Mall Rd. Attendance not published; organizers say they do not block the entrance or traffic. Rated Low provisionally.",
+      "rating": "Low",
+      "lat": 42.4885,
+      "lng": -71.2175,
+      "confirmed_on": "2026-11-04"
+    },
+    {
+      "id": "burlington-no-fear",
+      "name": "No Fear with Street Theater",
+      "recurrence": "weekly:Sat",
+      "time": "11:00 AM to 1:00 PM",
+      "category": "Protest",
+      "region": "Burlington, MA",
+      "venue": "Burlington Mall Rd at District Ave, two blocks from the ICE office",
+      "attendance": "Weekly Saturday protest with street theater. Attendance not published. Rated Low provisionally; may be cancelled in poor weather.",
+      "rating": "Low",
+      "lat": 42.488,
+      "lng": -71.216,
+      "confirmed_on": "2026-11-04"
+    }
+  ]
+}

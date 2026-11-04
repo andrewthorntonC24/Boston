@@ -1,0 +1,156 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SYNTHETIC Turn Purple 2 Blue test built from the real Nov 1-14 2026 page listings//EN
+BEGIN:VEVENT
+UID:tp-bw-1104@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261104T110000
+DTEND;TZID=America/New_York:20261104T130000
+SUMMARY:Bear Witness- Protest and Food Drive Wednesdays at ICE
+DESCRIPTION:BEARING WITNESS STANDOUT SCHEDULE AND GUIDELINES Above all\, we are committed to nonviolence.
+LOCATION:Burlington ICE Enforcement & Removal Operations Office\, 1000 District Avenue\, Burlington\, Massachusetts\, 01803
+GEO:42.4885;-71.2175
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-gain-1104@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261104T173000
+DTEND;TZID=America/New_York:20261104T183000
+SUMMARY:GAIN Weekly Northborough Standout
+DESCRIPTION:Join us at our weekly standout. This is a busy intersection with a great sidewalk.
+LOCATION:Old Northborough Town Hall\, 4 West Main St\, Northborough\, Massachusetts
+GEO:42.3195;-71.6411
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-j4a-1105@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261105T110000
+DTEND;TZID=America/New_York:20261105T130000
+SUMMARY:Justice 4 All Thursdays
+DESCRIPTION:Greater Assabet Indivisible Network (GAIN) invites you to stand in solidarity with immigrants.
+LOCATION:Burlington ICE Enforcement & Removal Operations Office\, 1000 District Avenue\, Burlington\, Massachusetts\, 01803
+GEO:42.4885;-71.2175
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-bus-1106@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261106T114500
+DTEND;TZID=America/New_York:20261106T140000
+SUMMARY:ICE in our Backyard & Rolling Billboard Bus Tours
+DESCRIPTION:Do you wonder how ICE transports detainees from New England to ICE prisons in other states?
+LOCATION:Depot Square Lexington Emery Park\, Lexington\, Massachusetts
+GEO:42.443;-71.229
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-hanscom-1106@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261106T130000
+DTEND;TZID=America/New_York:20261106T143000
+SUMMARY:De-ICE Hanscom Friday Standouts
+DESCRIPTION:Fridays from 1:00 to 2:30 at the Hanscom Rotary. De-ICE Hanscom is a coalition organizing peaceful standouts.
+LOCATION:Hanscom Rotary Intersection of Old Bedford Rd and Hanscom Dr\, Lincoln\, Massachusetts
+GEO:42.47;-71.289
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-postcard-1106@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261106T180000
+DTEND;TZID=America/New_York:20261106T200000
+SUMMARY:First Friday Postcard Party
+DESCRIPTION:Postcard writing party.
+LOCATION:Panera Bread-Hanover\, 1401 Washington St\, Hanover\, Massachusetts
+GEO:42.1126;-70.812
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-malden-1107@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261107T110000
+DTEND;TZID=America/New_York:20261107T120000
+SUMMARY:Malden Democrats Stand Out for Democracy
+DESCRIPTION:The Malden Democratic City Committee hosts a weekly pro-democracy stand out every Saturday.
+LOCATION:Malden-Private Address\, Malden\, Massachusetts
+GEO:42.4251;-71.0662
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-nofear-1107@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261107T110000
+DTEND;TZID=America/New_York:20261107T130000
+SUMMARY:Standout to SUPPORT IMMIGRANTS – No Fear Street Theater
+DESCRIPTION:Every week\, we stand on Burlington Mall Road with signs\, costumes and flags.
+LOCATION:Corner of Burlington Mall Road & District Ave- 2 blocks from ICE Detention Center\, District Avenue & Burlington Mall Road\, Burlington\, Massachusetts
+GEO:42.488;-71.216
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-methuen-1107@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261107T113000
+DTEND;TZID=America/New_York:20261107T123000
+SUMMARY:Greater Methuen Indivisible Standout for Democracy | Protest Event in Methuen
+DESCRIPTION:This a local Indivisible event! Bring your energy\, your voice\, and a sign.
+LOCATION:200 Haverhill St\, Methuen\, Massachusetts
+GEO:42.7262;-71.1909
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-middleborough-1107@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261107T113000
+DTEND;TZID=America/New_York:20261107T120000
+SUMMARY:Peace\, Justice\, & Equality Vigil
+DESCRIPTION:This ongoing public witness is an invitation to reflect and pray for peace.
+LOCATION:First Unitarian Universalist Church of Middleborough\, 25 S Main St\, Middleborough\, Massachusetts
+GEO:41.8932;-70.9112
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-danvers-1107@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261107T120000
+DTEND;TZID=America/New_York:20261107T130000
+SUMMARY:Defend Democracy Danvers Peabody
+DESCRIPTION:This is a weekly local Indivisible event. We gather together with posters\, banners\, and songs to oppose the current administration.
+LOCATION:Danvers Private Address\, Danvers\, Massachusetts
+GEO:42.575;-70.93
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-ipswich-1107@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261107T120000
+DTEND;TZID=America/New_York:20261107T130000
+SUMMARY:Rally for Democracy
+DESCRIPTION:This a local Indivisible event! We will line the street with our signs.
+LOCATION:Middle Green\, 36 S Main St\, Ipswich\, Massachusetts
+GEO:42.6792;-70.8412
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-salem-1107@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261107T120000
+DTEND;TZID=America/New_York:20261107T133000
+SUMMARY:Weekly Hook & Wave Standout Rally
+DESCRIPTION:Join us at Salem's Call's weekly standout rally.
+LOCATION:Riley Plaza\, 1-21 Margin St\, Salem\, Massachusetts
+GEO:42.5195;-70.8967
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-brookline-1107@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261107T130000
+DTEND;TZID=America/New_York:20261107T140000
+SUMMARY:Brookline Rally for Democracy\, November 2026
+DESCRIPTION:Weekly rally at Coolidge Corner by three Brookline pro-democracy groups.
+LOCATION:Coolidge Corner\, Beacon Street & Harvard Street\, Brookline\, Massachusetts
+GEO:42.3418;-71.1212
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-vopro-1108@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261108T160000
+DTEND;TZID=America/New_York:20261108T180000
+SUMMARY:Voter Protection calls to Cure Ballots-various shifts
+DESCRIPTION:Join VoPro Pros to help cure ballots. Virtual Event
+LOCATION:
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-lab-1110@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261110T103000
+DTEND;TZID=America/New_York:20261110T120000
+SUMMARY:Indivisible LAB Daytime Action Hours
+DESCRIPTION:We meet with members\, allies\, and newcomers to strengthen our community.
+LOCATION:Lexington Private Address\, Lexington\, Massachusetts
+GEO:42.443;-71.229
+END:VEVENT
+BEGIN:VEVENT
+UID:tp-gain-1111@turnpurple2blue.org
+DTSTART;TZID=America/New_York:20261111T173000
+DTEND;TZID=America/New_York:20261111T183000
+SUMMARY:GAIN Weekly Northborough Standout
+DESCRIPTION:Join us at our weekly standout.
+LOCATION:Old Northborough Town Hall\, 4 West Main St\, Northborough\, Massachusetts
+GEO:42.3195;-71.6411
+END:VEVENT
+END:VCALENDAR

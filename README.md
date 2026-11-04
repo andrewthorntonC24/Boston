@@ -17,7 +17,7 @@ A source that fails keeps its last good data, is labelled **Stale** on the page 
 | Crime | Analyze Boston open data (or the BPD ArcGIS service if you set it) | none |
 | Events | Ticketmaster Discovery API + `data/manual_events.json` | `TICKETMASTER_API_KEY` |
 | Venue pins | US Census Geocoder (cached in `data/geocache.json`), traffic items use feed coordinates | none |
-| Protests | **Manual**: `data/protests.json` (no reliable feed exists) | n/a |
+| Protests | Calendar feeds from Massachusetts Peace Action, Turn Purple 2 Blue, and Extinction Rebellion Boston (automatic), plus `data/protests.json` for the sources reviewed by hand | none |
 
 ## One-time setup
 1. Put this folder in a GitHub repo. Settings -> Pages -> Source: **GitHub Actions**.
@@ -42,8 +42,10 @@ A source that fails keeps its last good data, is labelled **Stale** on the page 
 - **Events** appear only if Ticketmaster lists them. Everything else needs a line in `data/manual_events.json`.
 - **Ratings**: arena venues are Medium with the provisional density wording; everything else is Low. **High and Very High are never automatic.**
 
-## Keeping manual sections honest
-`data/protests.json` carries a `reviewed_on` date. After `PROTEST_STALE_DAYS` (7) the page shows a yellow "Stale" warning. Update the file after each review.
+## Protests: what is automatic and what is not
+Automatic, every run: the MAPA, Turn Purple 2 Blue (this week and next), and XR Boston calendar feeds (`src/sources/protests.py`). Each listing is classified; only in-person demonstrations within 20 miles of downtown (`PROTEST_RADIUS_MI`) are rated (Low, provisional), and talks, films, meetings, trainings, and online events are listed under "not counted." One failing feed never hides the other.
+By hand: Mass 50501, Boston Indivisible, No Kings Boston, Boston.gov traffic advisories, and news. `data/protests.json` records when each was checked; after `PROTEST_STALE_DAYS` (7) the page shows a yellow "Stale" warning. The file also keeps the weekly Burlington demonstrations as a backup, because the MAPA feed shows each weekly series only once.
+The XR Boston feed has not been seen yet: after the first run, open `data/raw/xr_ical_sample.ics` and confirm it is a calendar file.
 
 ## Run locally
 ```
